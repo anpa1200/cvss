@@ -1,0 +1,63 @@
+/* ── Brand colors ─────────────────────────────────────────────────────── */
+:root {
+  --ifm-color-primary: #0ea5e9;
+  --ifm-color-primary-dark: #0284c7;
+  --ifm-color-primary-darker: #0172ae;
+  --ifm-color-primary-darkest: #015d8e;
+  --ifm-color-primary-light: #38bdf8;
+  --ifm-color-primary-lighter: #7dd3fc;
+  --ifm-color-primary-lightest: #bae6fd;
+  --ifm-code-font-size: 93%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.15);
+
+  /* Custom */
+  --hs-neon: #00ff88;
+  --hs-neon-dim: #00cc6e;
+  --hs-red: #ff4560;
+  --hs-orange: #fd7035;
+  --hs-bg-card: #f8fafc;
+  --hs-border: #e2e8f0;
+  --hs-text-muted: #64748b;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #38bdf8;
+  --ifm-color-primary-dark: #0ea5e9;
+  --ifm-color-primary-darker: #0284c7;
+  --ifm-color-primary-darkest: #0172ae;
+  --ifm-color-primary-light: #7dd3fc;
+  --ifm-color-primary-lighter: #bae6fd;
+  --ifm-color-primary-lightest: #e0f2fe;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.4);
+
+  --hs-bg-card: #0f172a;
+  --hs-border: #1e293b;
+  --hs-text-muted: #94a3b8;
+}
+
+/* ── Typography ───────────────────────────────────────────────────────── */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+code, pre, .prism-code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace !important;
+}
+
+/* ── Docs ─────────────────────────────────────────────────────────────── */
+.markdown h1:first-child {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.markdown h2 {
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--hs-border);
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--ifm-color-primary-dark); border-radius: 3px; }
