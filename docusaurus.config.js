@@ -85,10 +85,10 @@ const config = {
           {
             title: 'Guide',
             items: [
-              { label: 'Introduction', to: '/docs/01-introduction' },
-              { label: 'Vector String', to: '/docs/03-vector-string' },
-              { label: 'Worked Examples', to: '/docs/06-worked-examples' },
-              { label: 'Cheatsheet', to: '/docs/13-cheatsheet' },
+              { label: 'Introduction', to: '/docs/introduction' },
+              { label: 'Vector String', to: '/docs/vector-string' },
+              { label: 'Worked Examples', to: '/docs/worked-examples' },
+              { label: 'Cheatsheet', to: '/docs/cheatsheet' },
             ],
           },
           {

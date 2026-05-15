@@ -12,28 +12,24 @@ sidebar_position: 1
 
 ---
 
-## Table of Contents
+## Guide Contents
 
-0. [Introduction: CVSS Is a Tool, Not a Score](#introduction)
-1. [What Changed in v4.0 — and Why It Matters](#what-changed)
-2. [v3.1 vs v4.0: Side-by-Side with Real CVEs](#v3-vs-v4)
-3. [Anatomy of a CVSS v4.0 Vector String](#vector-string)
-4. [The Three Metric Groups Explained](#metric-groups)
-5. [The CVSS Lifecycle: CVSS-B → CVSS-BT → CVSS-BTE](#lifecycle)
-6. [Threat Metrics in Practice: KEV, EPSS, and Exploit Feeds](#threat-metrics)
-7. [Environmental Metrics: Scoring for Your Environment](#environmental-metrics)
-8. [Worked Example 1: CVE-2021-44228 Log4Shell — Score Evolution Over 72 Hours](#log4shell)
-9. [Worked Example 2: CVE-2025-32433 Erlang/OTP — From 10.0 to 5.9](#worked-example-cve)
-10. [Worked Example 3: Firmware Report — 18 Criticals Become Medium](#worked-example-firmware)
-11. [Worked Example 4: CitrixBleed, MOVEit, FortiOS — Three Real-World Cases](#real-world-cases)
-12. [Industry-Specific Scoring: Healthcare, Finance, OT/ICS](#industry-specific)
-13. [CVSS vs SSVC: When to Use Which](#ssvc)
-14. [The Practical VM Workflow: From Scanner Output to Prioritized Action](#vm-workflow)
-15. [CVSS as Regulatory Framework: The 5-Phase Maturity Model](#regulatory)
-16. [Supplemental Metrics: The Overlooked Context Layer](#supplemental)
-17. [The 8 Most Common CVSS Mistakes](#mistakes)
-18. [Interview Questions and Answers](#interview-qa)
-19. [Quick Reference Cheatsheet](#cheatsheet)
+| Chapter | Link |
+|---------|------|
+| Introduction & What Changed | *this page* |
+| v3.1 vs v4.0 Side-by-Side | [→ Chapter 2](/docs/v3-vs-v4) |
+| Vector String Anatomy | [→ Chapter 3](/docs/vector-string) |
+| Three Metric Groups | [→ Chapter 3](/docs/vector-string) |
+| CVSS Lifecycle B→BT→BTE | [→ Chapter 4](/docs/lifecycle) |
+| Threat & Environmental Metrics | [→ Chapter 5](/docs/threat-metrics) |
+| Worked Examples (Log4Shell, Erlang, Firmware, CitrixBleed) | [→ Chapter 6](/docs/worked-examples) |
+| Industry-Specific Scoring | [→ Chapter 7](/docs/industry-specific) |
+| CVSS vs SSVC | [→ Chapter 8](/docs/cvss-vs-ssvc) |
+| Practical VM Workflow | [→ Chapter 9](/docs/vm-workflow) |
+| CVSS Enrichment Tool | [→ Chapter 10](/docs/enrichment-tool) |
+| Regulatory Framework | [→ Chapter 11](/docs/regulatory) |
+| Common Mistakes & Interview Q\&A | [→ Chapter 12](/docs/mistakes) |
+| Quick Reference Cheatsheet | [→ Chapter 13](/docs/cheatsheet) |
 
 ---
 

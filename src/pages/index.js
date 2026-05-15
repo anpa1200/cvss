@@ -7,80 +7,80 @@ const SECTIONS = [
   {
     num: '01', emoji: '📖', title: 'Introduction',
     desc: 'Why Base scores are wrong 95% of the time — and what CVSS v4.0 does to fix it.',
-    to: '/docs/01-introduction',
-    links: [{ label: 'CVSS Is a Tool, Not a Score', to: '/docs/01-introduction' }, { label: 'What Changed in v4.0', to: '/docs/01-introduction#what-changed' }],
+    to: '/docs/introduction',
+    links: [{ label: 'CVSS Is a Tool, Not a Score', to: '/docs/introduction' }, { label: 'What Changed in v4.0', to: '/docs/introduction#what-changed-in-v40--and-why-it-matters' }],
   },
   {
     num: '02', emoji: '⚖️', title: 'v3.1 vs v4.0',
     desc: 'Same CVEs, side-by-side. Log4Shell, PrintNightmare, local privesc — see exactly where scores differ and why.',
-    to: '/docs/02-v3-vs-v4',
-    links: [{ label: 'Comparison Table', to: '/docs/02-v3-vs-v4' }],
+    to: '/docs/v3-vs-v4',
+    links: [{ label: 'Comparison Table', to: '/docs/v3-vs-v4' }],
   },
   {
     num: '03', emoji: '🔬', title: 'Vector String & Metrics',
     desc: 'Full anatomy of the CVSS v4.0 vector string. Every metric explained with practical decision rules.',
-    to: '/docs/03-vector-string',
-    links: [{ label: 'Vector Anatomy', to: '/docs/03-vector-string' }, { label: 'Metric Groups', to: '/docs/03-vector-string#metric-groups' }],
+    to: '/docs/vector-string',
+    links: [{ label: 'Vector Anatomy', to: '/docs/vector-string' }, { label: 'Metric Groups', to: '/docs/vector-string#group-1-base-metrics-set-by-vendor' }],
   },
   {
     num: '04', emoji: '🔄', title: 'Scoring Lifecycle',
     desc: 'CVSS-B → CVSS-BT → CVSS-BTE. How scores mature from vendor publication to your environment.',
-    to: '/docs/04-lifecycle',
-    links: [{ label: 'B → BT → BTE', to: '/docs/04-lifecycle' }, { label: 'Scoring Workflow', to: '/docs/04-lifecycle#workflow' }],
+    to: '/docs/lifecycle',
+    links: [{ label: 'B → BT → BTE', to: '/docs/lifecycle' }, { label: 'Scoring Workflow', to: '/docs/lifecycle' }],
   },
   {
     num: '05', emoji: '🎯', title: 'Threat & Environmental',
     desc: 'KEV, EPSS, Metasploit, ExploitDB. Set E:U vs E:A vs E:P with confidence. Override Base with your reality.',
-    to: '/docs/05-threat-metrics',
-    links: [{ label: 'Exploit Maturity', to: '/docs/05-threat-metrics' }, { label: 'Environmental Overrides', to: '/docs/05-threat-metrics#environmental' }],
+    to: '/docs/threat-metrics',
+    links: [{ label: 'Exploit Maturity', to: '/docs/threat-metrics' }, { label: 'Environmental Overrides', to: '/docs/threat-metrics' }],
   },
   {
     num: '06', emoji: '🧪', title: 'Worked Examples',
     desc: 'Log4Shell, Erlang/OTP CVE-2025-32433, 18-Critical firmware report, CitrixBleed, MOVEit, FortiOS.',
-    to: '/docs/06-worked-examples',
-    links: [{ label: 'Log4Shell 72h', to: '/docs/06-worked-examples' }, { label: 'Firmware Report', to: '/docs/06-worked-examples#firmware' }, { label: 'CitrixBleed', to: '/docs/06-worked-examples#citrixbleed' }],
+    to: '/docs/worked-examples',
+    links: [{ label: 'Log4Shell 72h', to: '/docs/worked-examples' }, { label: 'Firmware Report', to: '/docs/worked-examples' }, { label: 'CitrixBleed', to: '/docs/worked-examples' }],
   },
   {
     num: '07', emoji: '🏥', title: 'Industry-Specific Scoring',
     desc: 'Healthcare (HIPAA), Finance (PCI-DSS), OT/ICS (ISA/IEC 62443). Environmental profiles per sector.',
-    to: '/docs/07-industry-specific',
-    links: [{ label: 'Healthcare', to: '/docs/07-industry-specific' }, { label: 'OT/ICS', to: '/docs/07-industry-specific#ot-ics' }],
+    to: '/docs/industry-specific',
+    links: [{ label: 'Healthcare', to: '/docs/industry-specific' }, { label: 'OT/ICS', to: '/docs/industry-specific' }],
   },
   {
     num: '08', emoji: '🗂️', title: 'CVSS vs SSVC',
     desc: 'When CVSS is the right tool and when SSVC gives a better answer. Decision framework for VM programs.',
-    to: '/docs/08-cvss-vs-ssvc',
-    links: [{ label: 'Comparison', to: '/docs/08-cvss-vs-ssvc' }],
+    to: '/docs/cvss-vs-ssvc',
+    links: [{ label: 'Comparison', to: '/docs/cvss-vs-ssvc' }],
   },
   {
     num: '09', emoji: '⚙️', title: 'Practical VM Workflow',
     desc: 'End-to-end: scanner output → CVSS-B → CVSS-BT → CVSS-BTE → SLA assignment → ticket.',
-    to: '/docs/09-vm-workflow',
-    links: [{ label: '6-Step Workflow', to: '/docs/09-vm-workflow' }],
+    to: '/docs/vm-workflow',
+    links: [{ label: '6-Step Workflow', to: '/docs/vm-workflow' }],
   },
   {
     num: '10', emoji: '🛠️', title: 'Enrichment Tool',
     desc: 'Python CLI that pulls KEV, EPSS, NVD, Metasploit, and ExploitDB to auto-enrich CVSS scores.',
-    to: '/docs/10-enrichment-tool',
-    links: [{ label: 'Tool Overview', to: '/docs/10-enrichment-tool' }],
+    to: '/docs/enrichment-tool',
+    links: [{ label: 'Tool Overview', to: '/docs/enrichment-tool' }],
   },
   {
     num: '11', emoji: '📋', title: 'Regulatory Framework',
     desc: '5-Phase CVSS Maturity Model. Map your program against NIS2, ISO 27001, SOC 2, PCI-DSS.',
-    to: '/docs/11-regulatory',
-    links: [{ label: '5-Phase Model', to: '/docs/11-regulatory' }, { label: 'Supplemental Metrics', to: '/docs/11-regulatory#supplemental' }],
+    to: '/docs/regulatory',
+    links: [{ label: '5-Phase Model', to: '/docs/regulatory' }, { label: 'Supplemental Metrics', to: '/docs/regulatory' }],
   },
   {
     num: '12', emoji: '⚠️', title: 'Common Mistakes & Interview Q&A',
     desc: 'The 8 most common CVSS errors — and 6 interview questions that separate practitioners from readers.',
-    to: '/docs/12-mistakes',
-    links: [{ label: '8 Mistakes', to: '/docs/12-mistakes' }, { label: 'Interview Q&A', to: '/docs/12-mistakes#interview' }],
+    to: '/docs/mistakes',
+    links: [{ label: '8 Mistakes', to: '/docs/mistakes' }, { label: 'Interview Q&A', to: '/docs/mistakes' }],
   },
   {
     num: '13', emoji: '📌', title: 'Cheatsheet & Tools',
     desc: 'Quick-reference cards, SLA tiers, all metric values, FIRST.org calculator, KEV API, EPSS API.',
-    to: '/docs/13-cheatsheet',
-    links: [{ label: 'Cheatsheet', to: '/docs/13-cheatsheet' }, { label: 'Tools & Resources', to: '/docs/13-cheatsheet#tools' }],
+    to: '/docs/cheatsheet',
+    links: [{ label: 'Cheatsheet', to: '/docs/cheatsheet' }, { label: 'Tools & Resources', to: '/docs/cheatsheet' }],
   },
 ];
 
@@ -112,13 +112,13 @@ export default function Home() {
           </p>
 
           <div className={styles.ctaRow}>
-            <Link className={styles.btnPrimary} to="/docs/01-introduction">
+            <Link className={styles.btnPrimary} to="/docs/introduction">
               ▶ Start Reading
             </Link>
-            <Link className={styles.btnSecondary} to="/docs/06-worked-examples">
+            <Link className={styles.btnSecondary} to="/docs/worked-examples">
               🧪 Worked Examples
             </Link>
-            <Link className={styles.btnSecondary} to="/docs/13-cheatsheet">
+            <Link className={styles.btnSecondary} to="/docs/cheatsheet">
               📌 Cheatsheet
             </Link>
           </div>
@@ -229,10 +229,10 @@ export default function Home() {
           <h2>Stop sorting by score. Start prioritizing by risk.</h2>
           <p>The complete CVSS v4.0 workflow — from scanner CSV to enriched, actionable findings.</p>
           <div className={styles.ctaRow}>
-            <Link className={styles.btnPrimary} to="/docs/01-introduction">
+            <Link className={styles.btnPrimary} to="/docs/introduction">
               ▶ Read the Guide
             </Link>
-            <Link className={styles.btnSecondary} to="/docs/10-enrichment-tool">
+            <Link className={styles.btnSecondary} to="/docs/enrichment-tool">
               🛠️ Enrichment Tool
             </Link>
           </div>
