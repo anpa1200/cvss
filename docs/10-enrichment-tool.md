@@ -67,3 +67,88 @@ CVE-2025-32433         3.1   YES   0.5031  E:A    Critical    24–72 hours
 ```
 
 Full documentation, profile definitions, and NVD API key instructions are in the repository README: **https://github.com/anpa1200/cvss_4.0**
+
+---
+
+## Common Usage Patterns
+
+**Single CVE — quick check before a meeting:**
+
+```bash
+python3 cvss_enrichment_tool.py \
+  --cves CVE-2025-32433 \
+  --profile internal_vlan
+
+# Output:
+# CVE-2025-32433  CVSS: 4.0  KEV: YES  EPSS: 0.5031  E: E:A  Severity: Critical  SLA: 24–72 hours
+# BTE vector: CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/E:A/MAV:A/MAC:H
+# BTE Score: ~6.5 Medium  [internal_vlan profile applied]
+```
+
+**Batch from scanner — CSV input, JSON output for ticketing system:**
+
+```bash
+# Export CVE list from Tenable / Qualys / Rapid7 → cves.txt (one per line)
+python3 cvss_enrichment_tool.py \
+  --file cves.txt \
+  --profile internet_facing \
+  --output enriched_report.csv \
+  --json enriched_report.json \
+  --apikey YOUR_NVD_KEY
+
+# enriched_report.json is suitable for import into Jira, ServiceNow, or SIEM
+```
+
+**Healthcare deployment — EHR system audit:**
+
+```bash
+python3 cvss_enrichment_tool.py \
+  --file ehr_cves.txt \
+  --profile healthcare_ehr \
+  --output ehr_report.csv
+
+# healthcare_ehr profile sets CR:H / IR:H / AR:H by default
+# Any CVE scoring ≥ 4.0 after enrichment gets flagged for HIPAA risk analysis
+```
+
+**Comparing profiles for the same CVE list (what-if analysis):**
+
+```bash
+for profile in internet_facing internal_vlan dev_test isolated_ot; do
+  echo "=== Profile: $profile ==="
+  python3 cvss_enrichment_tool.py \
+    --file cves.txt \
+    --profile $profile \
+    --quiet  # summary only
+done
+
+# Shows how the same vulnerability list scores differently across your segments
+# Critical finding: a 9.8 Critical in internet_facing may be 4.5 Medium in dev_test
+```
+
+**Automation — daily cron enrichment:**
+
+```bash
+#!/bin/bash
+# /etc/cron.d/cvss-enrich — runs at 06:00 daily
+DATE=$(date +%Y-%m-%d)
+python3 /opt/cvss_4.0/cvss_enrichment_tool.py \
+  --file /var/scanner/today_cves.txt \
+  --profile internet_facing \
+  --output /var/reports/enriched_${DATE}.csv \
+  --json /var/reports/enriched_${DATE}.json \
+  --apikey $NVD_API_KEY
+
+# Post-process: alert on any new Critical findings
+python3 /opt/cvss_4.0/alert_new_criticals.py /var/reports/enriched_${DATE}.json
+```
+
+---
+
+## Related Chapters
+
+| Chapter | What you'll find |
+|---------|-----------------|
+| [Practical VM Workflow](/docs/vm-workflow) | The manual version of this pipeline + ticket template |
+| [Threat & Environmental Metrics](/docs/threat-metrics) | How KEV, EPSS, and environmental profiles are determined |
+| [Scoring Lifecycle](/docs/lifecycle) | The B→BT→BTE theory the tool implements |

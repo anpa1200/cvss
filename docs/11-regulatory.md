@@ -129,3 +129,74 @@ or equipment failure — potentially regardless of the numeric CVSS score.
 - Firmware corruption on embedded devices (R:I — requires physical device replacement)
 - Cryptographic key material theft (R:I — compromised keys cannot be "un-stolen")
 - Industrial control setpoint modification causing equipment damage (R:I — physical damage)
+
+---
+
+## Mapping Your Program to the 5-Phase Model
+
+Use this self-assessment to determine your current phase and the next milestone:
+
+```
+Phase 1 — Socialization:
+  □ Security team has received CVSS v4.0 training
+  □ Leadership is aware that Base scores ≠ risk
+  □ A vulnerability management policy exists (even if informal)
+
+Phase 2 — Self-Evaluation:
+  □ Vulnerability scanner deployed, producing CVE lists with Base scores
+  □ All Critical (CVSS-B ≥ 9.0) tracked and remediated within SLA
+  □ CVE inventory maintained (even in a spreadsheet)
+  Milestone: Zero unaddressed Criticals older than 90 days
+
+Phase 3 — External Validation:
+  □ All High (CVSS-B ≥ 7.0) tracked with SLA
+  □ Process verified by external auditor or internal audit team
+  □ Documented exception process for vulnerabilities that cannot be patched
+  Milestone: Third-party confirmation that Critical and High backlogs are managed
+
+Phase 4 — Threat Awareness:
+  □ CISA KEV API checked for all new CVEs (automated)
+  □ EPSS scores pulled and used to set E: metric
+  □ CVSS-BT scores used for prioritization (not just CVSS-B)
+  □ Threat intel source documented (KEV, EPSS, ExploitDB, commercial TI)
+  Milestone: Remediation prioritization is driven by CVSS-BT, not CVSS-B alone
+
+Phase 5 — Environmental Context:
+  □ Asset inventory with network zone classification exists
+  □ Environmental metrics (MAV/MAC/CR/IR/AR) applied per asset group
+  □ Each adjustment backed by documented evidence (firewall rules, policy IDs)
+  □ Environmental reviews tied to change management process
+  □ CVSS-BTE scores used for SLA assignment and audit reporting
+  Milestone: Full audit trail from CVE publication to documented remediation decision
+
+SCRM Track (parallel):
+  □ Supplier contracts require CVSS v4.0 vectors in vulnerability disclosures
+  □ SBOM requirements reference CVSS scoring
+  □ Supplier notification required within 24h of KEV entry
+```
+
+---
+
+## Audit Evidence Checklist (Phase 5)
+
+When a regulatory auditor asks to verify your CVSS-BTE scores, they will want:
+
+| Claim | Evidence Required |
+|-------|-----------------|
+| `MAV:A` — system is not internet-facing | Firewall rule ID + last verified date + network diagram reference |
+| `MAC:H` — compensating access controls | VPN policy document + MFA enrollment logs + change ticket ID |
+| `MSC:N` — no subsequent system paths | Network egress rules + architecture diagram showing no lateral paths |
+| `CR:L` — low confidentiality requirement | Asset classification document + data inventory showing no PII/PHI |
+| `E:U` — no exploit evidence | KEV check timestamp + EPSS score + ExploitDB search result (negative) |
+| `E:A` → score escalation | KEV entry date + updated CVSS-BT score + new SLA assignment date |
+
+---
+
+## Related Chapters
+
+| Chapter | What you'll find |
+|---------|-----------------|
+| [Industry-Specific Scoring](/docs/industry-specific) | Profiles for healthcare, finance, OT/ICS |
+| [Threat & Environmental Metrics](/docs/threat-metrics) | How each environmental adjustment is made and documented |
+| [Practical VM Workflow](/docs/vm-workflow) | The operational process that generates regulatory evidence |
+| [Common Mistakes](/docs/mistakes) | What breaks compliance — especially Mistake 4 (undocumented adjustments) |

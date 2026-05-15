@@ -83,3 +83,73 @@ SSVC:
 
 Both outputs agree: drop everything, patch now.
 ```
+
+---
+
+## Practical Decision: Which Should I Use Today?
+
+```
+If your team:
+  ✓ Has a compliance requirement (PCI, HIPAA, NIS2, NIST RMF)     → CVSS (mandatory)
+  ✓ Needs numeric SLAs for ticketing/reporting                     → CVSS
+  ✓ Has scanner + SIEM integration consuming CVSS vectors          → CVSS
+  ✓ Is small (1–3 people) and needs fast daily triage              → SSVC (quicker)
+  ✓ Reports to non-technical leadership ("act / attend / track")   → SSVC
+
+If you use SSVC for daily triage and CVSS-BTE for documentation:
+  Morning standup: SSVC decision tree → "Act on these 3, attend to these 7"
+  Ticket creation: CVSS-BTE vector + score → audit-ready record of the decision
+  Compliance audit: CVSS-BTE documentation satisfies regulatory reviewers
+```
+
+**Running SSVC in parallel with CVSS — a quick Python implementation:**
+
+```python
+def ssvc_decision(exploitation: str, automatable: bool,
+                  technical_impact: str, mission_impact: str) -> str:
+    """
+    Simplified SSVC decision tree.
+    Returns: 'Immediate' | 'Act' | 'Attend' | 'Track'
+    """
+    if exploitation == "active":
+        if automatable and technical_impact == "total":
+            return "Immediate"
+        elif mission_impact == "irreversible":
+            return "Immediate"
+        else:
+            return "Act"
+
+    if exploitation == "poc":
+        if automatable and technical_impact == "total":
+            return "Act"
+        elif mission_impact in ("irreversible", "material"):
+            return "Act"
+        else:
+            return "Attend"
+
+    # exploitation == "none"
+    if technical_impact == "total" and mission_impact == "irreversible":
+        return "Attend"
+    return "Track"
+
+# Example usage alongside CVSS-BTE:
+result = ssvc_decision(
+    exploitation="active",   # E:A in CVSS
+    automatable=True,        # AU:Y in CVSS supplemental
+    technical_impact="total",
+    mission_impact="irreversible"
+)
+print(f"SSVC: {result}")   # → Immediate
+# CVSS-BTE: 10.0 Critical  → Both agree: patch now
+```
+
+---
+
+## Related Chapters
+
+| Chapter | What you'll find |
+|---------|-----------------|
+| [Introduction](/docs/introduction) | Why CVSS Base score alone fails and what the alternatives are |
+| [Threat & Environmental Metrics](/docs/threat-metrics) | The E: metric that drives both CVSS and SSVC exploitation status |
+| [Practical VM Workflow](/docs/vm-workflow) | Where to slot SSVC vs CVSS in your daily process |
+| [Regulatory Framework](/docs/regulatory) | When CVSS is legally required vs where SSVC is government-endorsed |

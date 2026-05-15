@@ -112,3 +112,67 @@ Interim mitigation: Network segmentation controls (document in CVSS-BTE)
 | Education | M | M | L | Student PII | — |
 | E-commerce | H | H | H | Customer data, availability | AU:Y, V:C |
 | Government (classified) | H | H | M | Data sovereignty | — |
+
+---
+
+## Building an Asset Profile for Your Environment
+
+An industry profile is a named set of default metric overrides you apply to all systems in a given segment. Here is how to build one:
+
+```python
+# Asset profile definition — Financial Services (PCI cardholder data environment)
+PROFILE_PCI_CDE = {
+    "name": "pci_payment",
+    "description": "PCI cardholder data environment — payment processing scope",
+    "security_requirements": {
+        "CR": "H",  # Customer financial data — high confidentiality requirement
+        "IR": "H",  # Transaction integrity — critical (fraud if modified)
+        "AR": "H",  # Payment system availability — contractual SLA obligations
+    },
+    "default_modifiers": {
+        # If system is in CDE but behind WAF + MFA:
+        "MAC": "H",
+        # Subsequent system impact reduced if CDE is properly segmented:
+        "MSC": "L",
+        "MSI": "L",
+    },
+    "notes": "PCI DSS v4.0 Requirement 6.3 — all vulnerabilities affecting CDE must be tracked with risk ratings"
+}
+
+# Asset profile — OT/ICS production control systems
+PROFILE_OT_PRODUCTION = {
+    "name": "isolated_ot",
+    "description": "Production OT/ICS — air-gapped from corporate",
+    "security_requirements": {
+        "CR": "L",  # Process data (flow rates, temperatures) is non-sensitive
+        "IR": "H",  # Control integrity — wrong setpoint = equipment damage
+        "AR": "H",  # Process availability — plant shutdown = immediate financial/safety impact
+    },
+    "default_modifiers": {
+        "MAV": "A",  # OT VLAN, not internet-accessible
+        "MAC": "H",  # Physical OT network required (secured facility)
+        "MSC": "N",  # OT is segmented from corporate
+        "MSI": "N",
+        "MSA": "N",
+    },
+    "supplemental": {
+        "S": "P",   # Safety: Present — control systems have physical impact potential
+        "RE": "H",  # Patching requires production window + vendor support
+    }
+}
+```
+
+Use these profiles consistently across all CVEs affecting systems in each segment. When a system changes segment (e.g., an OT system gets a cloud management connector), update its profile assignment and re-evaluate all open CVEs.
+
+See [Chapter 5 — Threat & Environmental Metrics](/docs/threat-metrics) for the full environmental adjustment decision process, and [Chapter 9 — VM Workflow](/docs/vm-workflow) for how profiles fit into the end-to-end pipeline.
+
+---
+
+## Related Chapters
+
+| Chapter | What you'll find |
+|---------|-----------------|
+| [Threat & Environmental Metrics](/docs/threat-metrics) | How to set CR/IR/AR and Modified Base metrics with evidence |
+| [Worked Examples](/docs/worked-examples) | Real CVEs scored in different deployment contexts |
+| [Regulatory Framework](/docs/regulatory) | How industry profiles map to HIPAA, PCI DSS, NERC CIP |
+| [Practical VM Workflow](/docs/vm-workflow) | Using profiles in your end-to-end VM process |

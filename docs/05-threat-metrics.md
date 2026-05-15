@@ -158,3 +158,50 @@ The environmental documentation template above captures the full audit trail req
 - New network path created (cloud connector, new VPN tunnel)
 
 Without this tie-in, Environmental metrics silently become stale — and a previously documented `MAV:A` may no longer reflect reality.
+
+---
+
+## Worked Adjustment: CVE-2023-44487 (HTTP/2 Rapid Reset)
+
+A concrete example of the full environmental decision process for one CVE across two system types:
+
+```
+CVE-2023-44487 — HTTP/2 Rapid Reset DDoS
+Base: CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:H
+CVSS-B: 8.7 High
+Threat:  E:A (CISA KEV — actively exploited)  → CVSS-BT: 8.7 High
+
+System A — Public CDN edge node (production, customer-facing):
+  Network:   AV:N → no change (internet-facing, correct)
+  Complexity: AC:L → no change (mass exploitation automated)
+  Data:       VC:N/VI:N → no change (DoS only, no data theft)
+  Availability: VA:H/SA:H → no change (this IS the risk here)
+  Criticality: AR:H (customer-facing, every minute of downtime = revenue + SLA breach)
+  Vector: .../E:A/AR:H
+  CVSS-BTE: ~9.3 Critical — patch immediately or deploy L7 DDoS mitigation
+
+System B — Internal CI/CD build server running HTTP/2 for internal API:
+  Network:   MAV:A (not internet-facing — internal VLAN 172.16.x.x)
+  Complexity: MAC:H (require build system credentials + VPN to reach)
+  Availability: AR:L (build server downtime = inconvenience, not revenue)
+  Vector: .../E:A/MAV:A/MAC:H/AR:L
+  CVSS-BTE: ~4.8 Medium — next maintenance window
+
+Justification documents required:
+  MAV:A: "System BSRV-001 has no inbound connections from WAN. Firewall policy FW-EGRESS-009."
+  MAC:H: "Access requires corporate VPN (MFA) + build system account (separate approval flow)."
+  AR:L:  "Classified Internal/Non-Critical per asset register AST-2024. SLA: Best-effort."
+```
+
+---
+
+## Related Chapters
+
+| Chapter | What you'll find |
+|---------|-----------------|
+| [Scoring Lifecycle](/docs/lifecycle) | Where Threat and Environmental metrics fit in the B→BT→BTE flow |
+| [Vector String Anatomy](/docs/vector-string) | How Modified metrics slot into the vector string |
+| [Worked Examples](/docs/worked-examples) | Full enrichment walkthrough for Log4Shell, CitrixBleed, MOVEit |
+| [Enrichment Tool](/docs/enrichment-tool) | Automate KEV + EPSS + Environmental enrichment for any CVE list |
+| [Practical VM Workflow](/docs/vm-workflow) | End-to-end scanner-to-ticket workflow using these metrics |
+| [Common Mistakes](/docs/mistakes) | What goes wrong when E: and MAV: are applied incorrectly |

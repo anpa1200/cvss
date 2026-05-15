@@ -183,3 +183,72 @@ Vendor assumed: AC:L (straightforward exploitation)
 Your reality:   MAC:H (attacker must first bypass your MFA + VPN)
 → Score drops further
 ```
+
+---
+
+## Reading a Real CVE Vector at a Glance
+
+Practice reading these three vectors — no calculator needed, just the metric tables above:
+
+**CVE-2023-4966 (CitrixBleed) — NVD published vector:**
+
+```
+CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:H/SI:N/SA:N
+
+Reading it:
+  AV:N  — Remote, internet-accessible (NetScaler is a perimeter device)
+  AC:L  — Trivial exploitation (send oversized HTTP GET, read buffer)
+  AT:N  — Default Citrix install, no special config needed
+  PR:N  — Unauthenticated (the whole point — session token theft pre-auth)
+  UI:N  — Attacker acts alone
+  VC:H  — Session tokens (in Vulnerable System memory) are fully read
+  VI:N  — No write capability (read-only memory leak)
+  VA:N  — Service remains running
+  SC:H  — Session tokens → authenticated access to backend systems (subsequent systems)
+  SI:N  — Attacker uses sessions but doesn't modify downstream data
+  SA:N  — Downstream availability unaffected
+
+Score: 9.4 Critical
+The high score is driven by AV:N + PR:N + SC:H — internet access, no auth, lateral movement via stolen sessions.
+```
+
+**CVE-2025-32433 (Erlang/OTP SSH) — as published:**
+
+```
+CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H
+
+All H's across both systems. This is the worst-case base vector (10.0).
+Exploit is unauthenticated pre-auth RCE in the SSH daemon itself.
+Any subsequent system accessible from the SSH server is at risk.
+
+With environment:  E:U/MAV:A/MAC:H  →  ~5.9 Medium
+(Corporate-only access, VPN required, no active exploit)
+```
+
+**A typical scanner finding — medium-severity web app vulnerability:**
+
+```
+CVSS:4.0/AV:N/AC:L/AT:P/PR:L/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N
+
+Reading it:
+  AT:P  — Requires a non-default application configuration (deployment precondition)
+  PR:L  — Attacker needs a low-privilege account (authenticated)
+  VC:L  — Partial data read (not full compromise)
+  VI:L  — Limited write (not arbitrary code execution)
+  SC:N/SI:N/SA:N — No lateral movement path
+
+Score: ~5.3 Medium — accurate for a limited post-auth partial-access vuln.
+With E:U (no exploit) this becomes ~3.1 Low — properly scheduled.
+```
+
+---
+
+## Related Chapters
+
+| Chapter | What you'll find |
+|---------|-----------------|
+| [v3.1 vs v4.0 Comparison](/docs/v3-vs-v4) | How to translate your existing v3.1 vectors |
+| [Scoring Lifecycle](/docs/lifecycle) | Adding Threat and Environmental metrics to your vector |
+| [Threat & Environmental Metrics](/docs/threat-metrics) | How to determine E:, MAV:, MAC: values |
+| [Worked Examples](/docs/worked-examples) | Full annotated vectors for real CVEs |
+| [Cheatsheet](/docs/cheatsheet) | All metric values on one page |

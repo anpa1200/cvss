@@ -111,3 +111,32 @@ First, the dual-system impact model. v4.0 separates Vulnerable System (VC/VI/VA)
 Second, the Attack Requirements (AT) metric separates attacker effort (AC) from deployment preconditions (AT). A race condition requires attacker effort regardless of deployment. A vulnerability requiring non-default configuration has a deployment precondition. These are different and should score differently.
 
 Third, simplified Threat metrics. The v3.x Temporal group had three metrics (E, RL, RC) — Remediation Level and Report Confidence were typically left at defaults, making them meaningless. v4.0 has one Threat metric (Exploit Maturity) that actually gets used.
+
+---
+
+## Mistake Diagnosis Checklist
+
+If your vulnerability management program shows any of these symptoms, look up the corresponding mistake:
+
+| Symptom | Likely Mistake |
+|---------|----------------|
+| Team is always in emergency mode despite no recent incidents | Mistake 1 (Base score treated as final) |
+| 400+ Criticals in backlog, all untouched for months | Mistake 2 (E:U never set) + Mistake 1 |
+| "We applied the same risk reduction to all 800 systems" | Mistake 3 (same profile for all) |
+| Auditor rejects your CVSS-BTE scores | Mistake 4 (no documentation) |
+| "Our CVSS-BTE is 3.9 — we're fine" on a nuclear plant system | Mistake 5 (BTE ≠ risk score) |
+| A system that was "Medium" last year is now breached | Mistake 6 (stale environmental metrics) |
+| Scanner imports v4.0 vectors but shows wrong scores | Mistake 7 (v3 parser reading v4 vectors) |
+| Missed an actively exploited CVE not listed in KEV | Mistake 8 (KEV as only source) |
+
+---
+
+## Related Chapters
+
+| Chapter | What you'll find |
+|---------|-----------------|
+| [Introduction](/docs/introduction) | Why the Base score problem exists |
+| [Scoring Lifecycle](/docs/lifecycle) | The correct B→BT→BTE workflow that prevents Mistakes 1–3 |
+| [Threat & Environmental Metrics](/docs/threat-metrics) | How to correctly apply E:, MAV:, and documentation (Mistakes 2, 4, 6) |
+| [Practical VM Workflow](/docs/vm-workflow) | The process that prevents Mistakes 1, 3, 6 |
+| [Cheatsheet](/docs/cheatsheet) | Quick reference when you need to decide fast without making mistakes |

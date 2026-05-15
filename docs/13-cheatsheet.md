@@ -161,6 +161,28 @@ COMPLEMENTARY FRAMEWORKS:
 
 ---
 
+---
+
+## Full Guide Navigation
+
+| # | Chapter | Key Takeaway |
+|---|---------|-------------|
+| 1 | [Introduction](/docs/introduction) | Base scores are worst-case estimates — not your answer |
+| 2 | [v3.1 vs v4.0](/docs/v3-vs-v4) | Scope:Changed → SC/SI/SA; new AT metric; cleaner temporal |
+| 3 | [Vector String Anatomy](/docs/vector-string) | Every metric has a practical question — answer it honestly |
+| 4 | [Scoring Lifecycle](/docs/lifecycle) | CVSS-B → CVSS-BT → CVSS-BTE — each layer adds precision |
+| 5 | [Threat & Environmental Metrics](/docs/threat-metrics) | KEV + EPSS + environmental profile = actionable score |
+| 6 | [Worked Examples](/docs/worked-examples) | Log4Shell, Erlang/OTP, CitrixBleed, MOVEit — real CVE traces |
+| 7 | [Industry-Specific Scoring](/docs/industry-specific) | Healthcare, Finance, OT — different CIA priorities |
+| 8 | [CVSS vs SSVC](/docs/cvss-vs-ssvc) | SSVC for triage, CVSS for documentation and compliance |
+| 9 | [Practical VM Workflow](/docs/vm-workflow) | Scanner CSV → enriched ticket in 6 steps + Python script |
+| 10 | [Enrichment Tool](/docs/enrichment-tool) | CLI that automates the full pipeline for any CVE list |
+| 11 | [Regulatory Framework](/docs/regulatory) | 5-phase maturity model + audit evidence checklist |
+| 12 | [Mistakes & Interview Q&A](/docs/mistakes) | 8 errors to avoid + 6 interview questions |
+| 13 | [Cheatsheet](/docs/cheatsheet) | This page |
+
+---
+
 ## Conclusion
 
 CVSS v4.0 answers the question that vulnerability managers have been asking for years: *"Why is my scanner showing 500 Critical vulnerabilities when I clearly cannot patch all of them this week?"*

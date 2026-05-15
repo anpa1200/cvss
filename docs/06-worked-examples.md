@@ -394,3 +394,64 @@ The CVSS-BTE remains at or near 9.6 Critical.
 ```
 
 **Key lesson from these three cases:** Environmental metrics are for reducing false priorities on legitimate non-urgent vulnerabilities. They are not for manufacturing justifications to defer critical work. When CISA KEV + high EPSS + confirmed exploitation by nation-state or ransomware actors = `E:A`, your response is patching, not scoring.
+
+---
+
+## Scoring Your Own CVEs: A Template
+
+Use this template for any new CVE that appears in your scanner output:
+
+```
+CVE: ___________
+NVD Base vector: CVSS:4.0/AV:_/AC:_/AT:_/PR:_/UI:_/VC:_/VI:_/VA:_/SC:_/SI:_/SA:_
+CVSS-B Score: ___  Severity: ___
+
+Step 1 — Threat enrichment (automated):
+  CISA KEV: YES / NO
+  EPSS: ___  (percentile: ___th)
+  ExploitDB: YES / NO  (EDB-ID: ___)
+  Metasploit module: YES / NO
+  E: value →  A / P / U
+  CVSS-BT Score: ___
+
+Step 2 — Environmental: Is this system internet-facing?
+  YES → AV:N stays, no MAV change
+  NO  → MAV: A / L / P  (circle one)
+  Evidence: ___________
+
+Step 3 — Environmental: Are compensating access controls in place?
+  VPN required: YES / NO  → MAC:H if YES
+  MFA required: YES / NO
+  Jump host required: YES / NO
+  Evidence: ___________
+
+Step 4 — Data sensitivity: Is VC:H appropriate?
+  System processes PII/financial/health data: YES / NO
+  If NO: MVC: L / N
+
+Step 5 — Blast radius: Are SC/SI/SA:H appropriate?
+  Can the compromised system reach other systems laterally? YES / NO
+  If NO: MSC:N / MSI:N / MSA:N
+  Evidence (network diagram, egress rules): ___________
+
+Step 6 — Asset criticality: Adjust CR/IR/AR?
+  Is this system business-critical? Raise CR:H / IR:H / AR:H as appropriate.
+  Is this a dev/test environment? Lower to CR:L / IR:L / AR:L.
+
+Final CVSS-BTE vector: CVSS:4.0/[base]/[threat]/[env]
+CVSS-BTE Score: ___  Severity: ___
+SLA: ___
+Approved by: ___  Date: ___
+```
+
+---
+
+## Related Chapters
+
+| Chapter | What you'll find |
+|---------|-----------------|
+| [Vector String Anatomy](/docs/vector-string) | How to read every field in the vectors above |
+| [Threat & Environmental Metrics](/docs/threat-metrics) | Step-by-step E: determination and adjustment decisions |
+| [Scoring Lifecycle](/docs/lifecycle) | The B→BT→BTE framework these examples demonstrate |
+| [Industry-Specific Scoring](/docs/industry-specific) | How the same CVE scores differently in healthcare vs OT/ICS |
+| [Cheatsheet](/docs/cheatsheet) | Score impact table + common vector examples |

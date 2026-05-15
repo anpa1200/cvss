@@ -46,6 +46,64 @@ FIRST.org describes CVSS v4.0 as a **living score** that matures as information 
 
 ---
 
+## Walking a CVE Through the Full Lifecycle
+
+**CVE-2024-21762 (FortiOS SSL VPN heap overflow)** — a real example from Fortinet's perimeter device.
+
+**Day 0 — Vendor publishes (February 8, 2024):**
+
+```
+NVD CVSS-B:
+  CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H
+  Score: 10.0 Critical
+
+At this point: scanner shows 10.0 for every FortiOS-based system you have.
+No exploit confirmed. Default E:X = treated as E:A.
+Action: Triage starts. Which of your FortiOS systems are internet-facing?
+```
+
+**Day 1 — CISA adds to KEV (February 9, 2024, confirmed exploitation):**
+
+```
+Threat update:
+  E:A  (CISA KEV confirmed)
+
+CVSS-BT:  10.0 Critical (E:A maintains maximum)
+EPSS:     0.93+ (extremely high exploitation probability)
+
+Action: Confirmed active exploitation. Internet-facing FortiOS = emergency patch NOW.
+Internal / VPN-gated FortiOS = begin emergency change management.
+```
+
+**Day 3 — Your team applies environmental context:**
+
+```
+System A — Internet-facing SSL VPN concentrator:
+  No environmental reduction possible. E:A + AV:N = genuine Critical.
+  CVSS-BTE: 10.0  →  Patch within 24 hours (or take offline)
+
+System B — FortiOS in DMZ, only reachable from corporate VPN:
+  MAV:A  (not directly internet-facing — VPN required to reach it)
+  MAC:H  (accessing the management plane requires jump host + MFA)
+  MSC:L  (segment has limited blast radius — no domain controllers)
+  CVSS:4.0/.../E:A/MAV:A/MAC:H/MSC:L
+  CVSS-BTE: ~7.6 High  →  Emergency patch window within 48 hours
+
+System C — FortiOS on isolated OT segment, no web-facing interfaces:
+  MAV:L  (local access to OT zone required — air-gapped from corp)
+  MAC:H  (physical OT network access, no remote management)
+  MSC:N/MSI:N/MSA:N  (OT segment is isolated from corporate)
+  CVSS:4.0/.../E:A/MAV:L/MAC:H/MSC:N/MSI:N/MSA:N
+  CVSS-BTE: ~5.9 Medium  →  Patch at next OT maintenance window
+
+Result:
+  Without lifecycle: 3 systems × 10.0 Critical = emergency response on all 3
+  With lifecycle:    1 genuine Critical, 1 High, 1 Medium
+  Effort saved: ~60% — and the documented evidence is audit-ready
+```
+
+---
+
 ## 6. Threat Metrics in Practice: KEV, EPSS, and Exploit Feeds
 
 ### CISA Known Exploited Vulnerabilities (KEV) Catalog
@@ -198,3 +256,15 @@ Step 3: Check ExploitDB / Metasploit / GitHub
 Step 4: Default assignment
   → No KEV, no EPSS signal, no public exploit → E:U
 ```
+
+---
+
+## Related Chapters
+
+| Chapter | What you'll find |
+|---------|-----------------|
+| [Vector String Anatomy](/docs/vector-string) | How to read and write the vectors used in each lifecycle stage |
+| [Threat & Environmental Metrics](/docs/threat-metrics) | Deep dive on E: determination and environmental adjustments |
+| [Worked Examples](/docs/worked-examples) | Log4Shell and Erlang/OTP traced through the full lifecycle |
+| [Practical VM Workflow](/docs/vm-workflow) | The 6-step operational process for your entire scanner output |
+| [Enrichment Tool](/docs/enrichment-tool) | Automate the B→BT→BTE pipeline for any list of CVEs |

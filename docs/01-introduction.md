@@ -158,3 +158,47 @@ v4.0 introduces formal nomenclature for the scoring lifecycle. This naming is im
 ### Supplemental Metric Group (New)
 
 A new optional group of metrics that provide **context without affecting the score**: Safety (S), Automatable (AU), Recovery (R), Value Density (V), Vulnerability Response Effort (RE), Provider Urgency (U). These allow vendors to communicate operational context that the numeric score cannot capture.
+
+---
+
+## Quick Start: Your First Enriched Score
+
+Here is the minimum viable workflow to move from a scanner output to an actionable decision:
+
+```bash
+# 1. You have a CVE from your scanner — e.g., CVE-2024-21762 (FortiOS SSL VPN)
+CVE=CVE-2024-21762
+
+# 2. Check CISA KEV (30 seconds)
+curl -s "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json" \
+  | python3 -c "
+import json, sys
+data = json.load(sys.stdin)
+match = [v for v in data['vulnerabilities'] if v['cveID'] == '$CVE']
+print('IN KEV:', bool(match))
+if match: print('Due date:', match[0]['dueDate'])
+"
+
+# 3. Check EPSS (30 seconds)
+curl -s "https://api.first.org/data/v1/epss?cve=$CVE" \
+  | python3 -c "import json,sys; d=json.load(sys.stdin); print('EPSS:', d['data'][0]['epss'])"
+
+# 4. Open FIRST.org calculator with the NVD base vector and apply your context
+# https://www.first.org/cvss/calculator/4-0
+```
+
+**What you get in under 2 minutes:** A documented `E:` value (A/P/U), plus the decision of whether to apply any environmental adjustments — so your 9.8 either stays an emergency or becomes a scheduled patch.
+
+---
+
+## Related Chapters
+
+| Chapter | What you'll find |
+|---------|-----------------|
+| [v3.1 vs v4.0 Comparison](/docs/v3-vs-v4) | See exactly where scores differ on real CVEs |
+| [Vector String Anatomy](/docs/vector-string) | Every metric explained with decision rules |
+| [Scoring Lifecycle (B→BT→BTE)](/docs/lifecycle) | How scores mature from vendor to your environment |
+| [Threat & Environmental Metrics](/docs/threat-metrics) | KEV, EPSS, and environmental adjustment decisions |
+| [Worked Examples](/docs/worked-examples) | Log4Shell, Erlang/OTP, CitrixBleed, MOVEit |
+| [Common Mistakes](/docs/mistakes) | The 8 errors that break CVSS in practice |
+| [Cheatsheet](/docs/cheatsheet) | Quick-reference for all metrics and SLA tiers |
