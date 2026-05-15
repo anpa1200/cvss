@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.1">
 <title data-rh="true">Introduction: CVSS Is a Tool, Not a Score | CVSS v4.0 Field Guide</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://anpa1200.github.io/cvss/docs/introduction"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Introduction: CVSS Is a Tool, Not a Score | CVSS v4.0 Field Guide"><meta data-rh="true" name="description" content="From a number that nobody trusts to a tool that changes how you work"><meta data-rh="true" property="og:description" content="From a number that nobody trusts to a tool that changes how you work"><link data-rh="true" rel="icon" href="/cvss/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://anpa1200.github.io/cvss/docs/introduction"><link data-rh="true" rel="alternate" href="https://anpa1200.github.io/cvss/docs/introduction" hreflang="en"><link data-rh="true" rel="alternate" href="https://anpa1200.github.io/cvss/docs/introduction" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Introduction: CVSS Is a Tool, Not a Score","item":"https://anpa1200.github.io/cvss/docs/introduction"}]}</script><link rel="stylesheet" href="/cvss/assets/css/styles.9b716c79.css">
-<script src="/cvss/assets/js/runtime~main.8c780dd5.js" defer="defer"></script>
-<script src="/cvss/assets/js/main.43fbee7c.js" defer="defer"></script>
+<script src="/cvss/assets/js/runtime~main.20aefee1.js" defer="defer"></script>
+<script src="/cvss/assets/js/main.344da35a.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -15,29 +15,73 @@
 <header><h1>CVSS v4.0: The Practical Field Guide for Vulnerability Management</h1></header>
 <p><em>From a number that nobody trusts to a tool that changes how you work</em></p>
 <hr>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="table-of-contents">Table of Contents<a href="#table-of-contents" class="hash-link" aria-label="Direct link to Table of Contents" title="Direct link to Table of Contents" translate="no">​</a></h2>
-<ol start="0">
-<li class=""><a href="#introduction" class="">Introduction: CVSS Is a Tool, Not a Score</a></li>
-<li class=""><a href="#what-changed" class="">What Changed in v4.0 — and Why It Matters</a></li>
-<li class=""><a href="#v3-vs-v4" class="">v3.1 vs v4.0: Side-by-Side with Real CVEs</a></li>
-<li class=""><a href="#vector-string" class="">Anatomy of a CVSS v4.0 Vector String</a></li>
-<li class=""><a href="#metric-groups" class="">The Three Metric Groups Explained</a></li>
-<li class=""><a href="#lifecycle" class="">The CVSS Lifecycle: CVSS-B → CVSS-BT → CVSS-BTE</a></li>
-<li class=""><a href="#threat-metrics" class="">Threat Metrics in Practice: KEV, EPSS, and Exploit Feeds</a></li>
-<li class=""><a href="#environmental-metrics" class="">Environmental Metrics: Scoring for Your Environment</a></li>
-<li class=""><a href="#log4shell" class="">Worked Example 1: CVE-2021-44228 Log4Shell — Score Evolution Over 72 Hours</a></li>
-<li class=""><a href="#worked-example-cve" class="">Worked Example 2: CVE-2025-32433 Erlang/OTP — From 10.0 to 5.9</a></li>
-<li class=""><a href="#worked-example-firmware" class="">Worked Example 3: Firmware Report — 18 Criticals Become Medium</a></li>
-<li class=""><a href="#real-world-cases" class="">Worked Example 4: CitrixBleed, MOVEit, FortiOS — Three Real-World Cases</a></li>
-<li class=""><a href="#industry-specific" class="">Industry-Specific Scoring: Healthcare, Finance, OT/ICS</a></li>
-<li class=""><a href="#ssvc" class="">CVSS vs SSVC: When to Use Which</a></li>
-<li class=""><a href="#vm-workflow" class="">The Practical VM Workflow: From Scanner Output to Prioritized Action</a></li>
-<li class=""><a href="#regulatory" class="">CVSS as Regulatory Framework: The 5-Phase Maturity Model</a></li>
-<li class=""><a href="#supplemental" class="">Supplemental Metrics: The Overlooked Context Layer</a></li>
-<li class=""><a href="#mistakes" class="">The 8 Most Common CVSS Mistakes</a></li>
-<li class=""><a href="#interview-qa" class="">Interview Questions and Answers</a></li>
-<li class=""><a href="#cheatsheet" class="">Quick Reference Cheatsheet</a></li>
-</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="guide-contents">Guide Contents<a href="#guide-contents" class="hash-link" aria-label="Direct link to Guide Contents" title="Direct link to Guide Contents" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Chapter</th><th>Link</th></tr></thead><tbody><tr><td>Introduction &amp; What Changed</td><td><em>this page</em></td></tr><tr><td>v3.1 vs v4.0 Side-by-Side</td><td><a class="" href="/cvss/docs/v3-vs-v4">→ Chapter 2</a></td></tr><tr><td>Vector String Anatomy</td><td><a class="" href="/cvss/docs/vector-string">→ Chapter 3</a></td></tr><tr><td>Three Metric Groups</td><td><a class="" href="/cvss/docs/vector-string">→ Chapter 3</a></td></tr><tr><td>CVSS Lifecycle B→BT→BTE</td><td><a class="" href="/cvss/docs/lifecycle">→ Chapter 4</a></td></tr><tr><td>Threat &amp; Environmental Metrics</td><td><a class="" href="/cvss/docs/threat-metrics">→ Chapter 5</a></td></tr><tr><td>Worked Examples (Log4Shell, Erlang, Firmware, CitrixBleed)</td><td><a class="" href="/cvss/docs/worked-examples">→ Chapter 6</a></td></tr><tr><td>Industry-Specific Scoring</td><td><a class="" href="/cvss/docs/industry-specific">→ Chapter 7</a></td></tr><tr><td>CVSS vs SSVC</td><td><a class="" href="/cvss/docs/cvss-vs-ssvc">→ Chapter 8</a></td></tr><tr><td>Practical VM Workflow</td><td><a class="" href="/cvss/docs/vm-workflow">→ Chapter 9</a></td></tr><tr><td>CVSS Enrichment Tool</td><td><a class="" href="/cvss/docs/enrichment-tool">→ Chapter 10</a></td></tr><tr><td>Regulatory Framework</td><td><a class="" href="/cvss/docs/regulatory">→ Chapter 11</a></td></tr><tr><td>Common Mistakes &amp; Interview Q&amp;A</td><td><a class="" href="/cvss/docs/mistakes">→ Chapter 12</a></td></tr><tr><td>Quick Reference Cheatsheet</td><td><a class="" href="/cvss/docs/cheatsheet">→ Chapter 13</a></td></tr></tbody></table>
 <hr>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="introduction-cvss-is-a-tool-not-a-score">Introduction: CVSS Is a Tool, Not a Score<a href="#introduction-cvss-is-a-tool-not-a-score" class="hash-link" aria-label="Direct link to Introduction: CVSS Is a Tool, Not a Score" title="Direct link to Introduction: CVSS Is a Tool, Not a Score" translate="no">​</a></h2>
 <p>Every security team has a vulnerability scanner. Every scanner produces a list with numbers. And almost every team treats those numbers as the truth — sorting by score descending, starting at 9.8, working down.</p>
@@ -175,6 +219,6 @@
 
 <table><thead><tr><th>Name</th><th>Metrics Used</th><th>Who Produces It</th><th>Meaning</th></tr></thead><tbody><tr><td><strong>CVSS-B</strong></td><td>Base only</td><td>Vendor / NVD</td><td>Worst-case, generic severity</td></tr><tr><td><strong>CVSS-BT</strong></td><td>Base + Threat</td><td>Consumer + threat intel</td><td>Severity given current exploit activity</td></tr><tr><td><strong>CVSS-BTE</strong></td><td>Base + Threat + Environmental</td><td>Consumer + all context</td><td>Severity in your specific deployment</td></tr></tbody></table>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="supplemental-metric-group-new">Supplemental Metric Group (New)<a href="#supplemental-metric-group-new" class="hash-link" aria-label="Direct link to Supplemental Metric Group (New)" title="Direct link to Supplemental Metric Group (New)" translate="no">​</a></h3>
-<p>A new optional group of metrics that provide <strong>context without affecting the score</strong>: Safety (S), Automatable (AU), Recovery (R), Value Density (V), Vulnerability Response Effort (RE), Provider Urgency (U). These allow vendors to communicate operational context that the numeric score cannot capture.</p></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/cvss/docs"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">CVSS v4.0 Field Guide</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/cvss/docs/v3-vs-v4"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">v3.1 vs v4.0: Side-by-Side Comparison</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#table-of-contents" class="table-of-contents__link toc-highlight">Table of Contents</a></li><li><a href="#introduction-cvss-is-a-tool-not-a-score" class="table-of-contents__link toc-highlight">Introduction: CVSS Is a Tool, Not a Score</a><ul><li><a href="#the-35-problem" class="table-of-contents__link toc-highlight">The 3–5% Problem</a></li><li><a href="#the-operational-consequence" class="table-of-contents__link toc-highlight">The Operational Consequence</a></li></ul></li><li><a href="#1-what-changed-in-v40--and-why-it-matters" class="table-of-contents__link toc-highlight">1. What Changed in v4.0 — and Why It Matters</a><ul><li><a href="#new-impact-model-two-systems-instead-of-one" class="table-of-contents__link toc-highlight">New Impact Model: Two Systems Instead of One</a></li><li><a href="#new-metric-attack-requirements-at" class="table-of-contents__link toc-highlight">New Metric: Attack Requirements (AT)</a></li><li><a href="#new-threat-metric-exploit-maturity-e" class="table-of-contents__link toc-highlight">New Threat Metric: Exploit Maturity (E)</a></li><li><a href="#cleaner-naming-cvss-b-cvss-bt-cvss-bte" class="table-of-contents__link toc-highlight">Cleaner Naming: CVSS-B, CVSS-BT, CVSS-BTE</a></li><li><a href="#supplemental-metric-group-new" class="table-of-contents__link toc-highlight">Supplemental Metric Group (New)</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Guide</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/cvss/docs/01-introduction">Introduction</a></li><li class="footer__item"><a class="footer__link-item" href="/cvss/docs/03-vector-string">Vector String</a></li><li class="footer__item"><a class="footer__link-item" href="/cvss/docs/06-worked-examples">Worked Examples</a></li><li class="footer__item"><a class="footer__link-item" href="/cvss/docs/13-cheatsheet">Cheatsheet</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Author</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://medium.com/@1200km" target="_blank" rel="noopener noreferrer" class="footer__link-item">Medium<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://linkedin.com/in/andrey-pautov" target="_blank" rel="noopener noreferrer" class="footer__link-item">LinkedIn<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/anpa1200" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Resources</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.first.org/cvss/calculator/4-0" target="_blank" rel="noopener noreferrer" class="footer__link-item">FIRST.org CVSS Calculator<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank" rel="noopener noreferrer" class="footer__link-item">CISA KEV Catalog<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://www.first.org/epss/" target="_blank" rel="noopener noreferrer" class="footer__link-item">EPSS<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">© 2026 Andrey Pautov · <a href="https://www.paypal.com/donate/?business=W3XDKS7J9XTCG&no_recurring=0&item_name=Buy+me+a+coffee+%28PayPal%29+%E2%80%94+Keep+the+lab+running&currency_code=USD" target="_blank" rel="noopener noreferrer">☕ Buy me a coffee</a></div></div></div></footer></div>
+<p>A new optional group of metrics that provide <strong>context without affecting the score</strong>: Safety (S), Automatable (AU), Recovery (R), Value Density (V), Vulnerability Response Effort (RE), Provider Urgency (U). These allow vendors to communicate operational context that the numeric score cannot capture.</p></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/cvss/docs"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">CVSS v4.0 Field Guide</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/cvss/docs/v3-vs-v4"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">v3.1 vs v4.0: Side-by-Side Comparison</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#guide-contents" class="table-of-contents__link toc-highlight">Guide Contents</a></li><li><a href="#introduction-cvss-is-a-tool-not-a-score" class="table-of-contents__link toc-highlight">Introduction: CVSS Is a Tool, Not a Score</a><ul><li><a href="#the-35-problem" class="table-of-contents__link toc-highlight">The 3–5% Problem</a></li><li><a href="#the-operational-consequence" class="table-of-contents__link toc-highlight">The Operational Consequence</a></li></ul></li><li><a href="#1-what-changed-in-v40--and-why-it-matters" class="table-of-contents__link toc-highlight">1. What Changed in v4.0 — and Why It Matters</a><ul><li><a href="#new-impact-model-two-systems-instead-of-one" class="table-of-contents__link toc-highlight">New Impact Model: Two Systems Instead of One</a></li><li><a href="#new-metric-attack-requirements-at" class="table-of-contents__link toc-highlight">New Metric: Attack Requirements (AT)</a></li><li><a href="#new-threat-metric-exploit-maturity-e" class="table-of-contents__link toc-highlight">New Threat Metric: Exploit Maturity (E)</a></li><li><a href="#cleaner-naming-cvss-b-cvss-bt-cvss-bte" class="table-of-contents__link toc-highlight">Cleaner Naming: CVSS-B, CVSS-BT, CVSS-BTE</a></li><li><a href="#supplemental-metric-group-new" class="table-of-contents__link toc-highlight">Supplemental Metric Group (New)</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Guide</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/cvss/docs/introduction">Introduction</a></li><li class="footer__item"><a class="footer__link-item" href="/cvss/docs/vector-string">Vector String</a></li><li class="footer__item"><a class="footer__link-item" href="/cvss/docs/worked-examples">Worked Examples</a></li><li class="footer__item"><a class="footer__link-item" href="/cvss/docs/cheatsheet">Cheatsheet</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Author</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://medium.com/@1200km" target="_blank" rel="noopener noreferrer" class="footer__link-item">Medium<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://linkedin.com/in/andrey-pautov" target="_blank" rel="noopener noreferrer" class="footer__link-item">LinkedIn<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/anpa1200" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Resources</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.first.org/cvss/calculator/4-0" target="_blank" rel="noopener noreferrer" class="footer__link-item">FIRST.org CVSS Calculator<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank" rel="noopener noreferrer" class="footer__link-item">CISA KEV Catalog<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://www.first.org/epss/" target="_blank" rel="noopener noreferrer" class="footer__link-item">EPSS<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">© 2026 Andrey Pautov · <a href="https://www.paypal.com/donate/?business=W3XDKS7J9XTCG&no_recurring=0&item_name=Buy+me+a+coffee+%28PayPal%29+%E2%80%94+Keep+the+lab+running&currency_code=USD" target="_blank" rel="noopener noreferrer">☕ Buy me a coffee</a></div></div></div></footer></div>
 </body>
 </html>
