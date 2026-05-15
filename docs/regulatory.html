@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-regulatory" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.1">
+<title data-rh="true">CVSS as Regulatory Framework | CVSS v4.0 Field Guide</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://anpa1200.github.io/cvss/docs/regulatory"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="CVSS as Regulatory Framework | CVSS v4.0 Field Guide"><meta data-rh="true" name="description" content="15. CVSS as Regulatory Framework: The 5-Phase Maturity Model"><meta data-rh="true" property="og:description" content="15. CVSS as Regulatory Framework: The 5-Phase Maturity Model"><link data-rh="true" rel="icon" href="/cvss/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://anpa1200.github.io/cvss/docs/regulatory"><link data-rh="true" rel="alternate" href="https://anpa1200.github.io/cvss/docs/regulatory" hreflang="en"><link data-rh="true" rel="alternate" href="https://anpa1200.github.io/cvss/docs/regulatory" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CVSS as Regulatory Framework","item":"https://anpa1200.github.io/cvss/docs/regulatory"}]}</script><link rel="stylesheet" href="/cvss/assets/css/styles.9b716c79.css">
+<script src="/cvss/assets/js/runtime~main.8c780dd5.js" defer="defer"></script>
+<script src="/cvss/assets/js/main.43fbee7c.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"dark"),document.documentElement.setAttribute("data-theme-choice",t||"dark")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}(),document.documentElement.setAttribute("data-announcement-bar-initially-dismissed",function(){try{return"true"===localStorage.getItem("docusaurus.announcement.dismiss")}catch(t){}return!1}())</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><div class="theme-announcement-bar announcementBar_mb4j" style="background-color:#1a1a2e;color:#e94560" role="banner"><div class="announcementBarPlaceholder_vyr4"></div><div class="content_knG7 announcementBarContent_xLdY">⚠️ All scoring examples use publicly available CVE data from NVD, FIRST.org, and CISA KEV. Always validate scores against your own environment.</div><button type="button" aria-label="Close" class="clean-btn close closeButton_CVFx announcementBarClose_gvF7"><svg viewBox="0 0 15 15" width="14" height="14"><g stroke="currentColor" stroke-width="3.1"><path d="M.75.75l13.5 13.5M14.25.75L.75 14.25"></path></g></svg></button></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/cvss/"><b class="navbar__title text--truncate">CVSS v4.0 Field Guide</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/cvss/docs">Guide</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://medium.com/@1200km" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Medium<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><a href="https://github.com/anpa1200/cvss" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG menuWithAnnouncementBar_GW3s"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/cvss/docs"><span title="CVSS v4.0 Field Guide" class="linkLabel_WmDU">CVSS v4.0 Field Guide</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/cvss/docs/introduction"><span title="Introduction: CVSS Is a Tool, Not a Score" class="linkLabel_WmDU">Introduction: CVSS Is a Tool, Not a Score</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/cvss/docs/v3-vs-v4"><span title="v3.1 vs v4.0: Side-by-Side Comparison" class="linkLabel_WmDU">v3.1 vs v4.0: Side-by-Side Comparison</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/cvss/docs/vector-string"><span title="Anatomy of a CVSS v4.0 Vector String" class="linkLabel_WmDU">Anatomy of a CVSS v4.0 Vector String</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/cvss/docs/lifecycle"><span title="The CVSS Scoring Lifecycle" class="linkLabel_WmDU">The CVSS Scoring Lifecycle</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/cvss/docs/threat-metrics"><span title="Threat &amp; Environmental Metrics" class="linkLabel_WmDU">Threat &amp; Environmental Metrics</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/cvss/docs/worked-examples"><span title="Worked Examples: Real CVEs" class="linkLabel_WmDU">Worked Examples: Real CVEs</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/cvss/docs/industry-specific"><span title="Industry-Specific Scoring" class="linkLabel_WmDU">Industry-Specific Scoring</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/cvss/docs/cvss-vs-ssvc"><span title="CVSS vs SSVC: When to Use Which" class="linkLabel_WmDU">CVSS vs SSVC: When to Use Which</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/cvss/docs/vm-workflow"><span title="The Practical VM Workflow" class="linkLabel_WmDU">The Practical VM Workflow</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/cvss/docs/enrichment-tool"><span title="CVSS v4.0 Enrichment Tool" class="linkLabel_WmDU">CVSS v4.0 Enrichment Tool</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/cvss/docs/regulatory"><span title="CVSS as Regulatory Framework" class="linkLabel_WmDU">CVSS as Regulatory Framework</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/cvss/docs/mistakes"><span title="The 8 Most Common CVSS Mistakes" class="linkLabel_WmDU">The 8 Most Common CVSS Mistakes</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/cvss/docs/cheatsheet"><span title="Quick Reference Cheatsheet" class="linkLabel_WmDU">Quick Reference Cheatsheet</span></a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/cvss/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">CVSS as Regulatory Framework</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>CVSS as Regulatory Framework</h1></header><p><img decoding="async" loading="lazy" src="/cvss/assets/images/1_Phjw6InMQW2DgUEy8TSPrg-b3cb3d28c2cbef1de5f3378252b51cfc.png" width="571" height="255" class="img_ev3q">
+<img decoding="async" loading="lazy" src="/cvss/assets/images/1_VS6SyXxBQgVBvVK7Tgdqzw-a901256641ed700b2cb00796bf9c0a57.png" width="800" height="476" class="img_ev3q"></p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="15-cvss-as-regulatory-framework-the-5-phase-maturity-model">15. CVSS as Regulatory Framework: The 5-Phase Maturity Model<a href="#15-cvss-as-regulatory-framework-the-5-phase-maturity-model" class="hash-link" aria-label="Direct link to 15. CVSS as Regulatory Framework: The 5-Phase Maturity Model" title="Direct link to 15. CVSS as Regulatory Framework: The 5-Phase Maturity Model" translate="no">​</a></h2>
+<p>The CVSS v4.0 lifecycle (CVSS-B → CVSS-BT → CVSS-BTE) maps directly to a regulatory maturity roadmap. This framework was formalized by Rob Arnold (Acorn Pass / CVSS Associates) in the whitepaper &quot;Enhancing National Cyber Resilience: CVSS v4.0 as a Regulatory Framework&quot; (2025).</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-5-phases--scrm-track">The 5 Phases + SCRM Track<a href="#the-5-phases--scrm-track" class="hash-link" aria-label="Direct link to The 5 Phases + SCRM Track" title="Direct link to The 5 Phases + SCRM Track" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Phase</th><th>Name</th><th>CVSS Level</th><th>Timeframe</th><th>Objective</th></tr></thead><tbody><tr><td><strong>1</strong></td><td>Socialization</td><td>—</td><td>Pre-program</td><td>Organization is aware of CVSS; training in place</td></tr><tr><td><strong>2</strong></td><td>Self-Evaluation</td><td>CVSS-B</td><td>Months 1–12</td><td>Remediate all Critical (Base ≥ 9.0)</td></tr><tr><td><strong>3</strong></td><td>External Validation</td><td>CVSS-B</td><td>Months 12–24</td><td>Remediate all High (Base ≥ 7.0); audit verifies</td></tr><tr><td><strong>4</strong></td><td>Threat Awareness</td><td>CVSS-BT</td><td>Months 24–36</td><td>Integrate threat intel; remediate by CVSS-BT priority</td></tr><tr><td><strong>5</strong></td><td>Environmental Context</td><td>CVSS-BTE</td><td>Months 36+</td><td>Full BTE scoring with auditable documentation</td></tr><tr><td><strong>SCRM</strong></td><td>Supply Chain</td><td>CVSS-BTE</td><td>Concurrent from Phase 2</td><td>Embed CVSS requirements in supplier contracts</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-gaming-prevention-problem">The Gaming Prevention Problem<a href="#the-gaming-prevention-problem" class="hash-link" aria-label="Direct link to The Gaming Prevention Problem" title="Direct link to The Gaming Prevention Problem" translate="no">​</a></h3>
+<p>At Phase 5, CVSS-BTE scores can be lower than CVSS-B. This creates an incentive: organizations might manipulate Environmental metrics to claim compliance while leaving real vulnerabilities unaddressed.</p>
+<p>The regulatory countermeasure:</p>
+<p><strong>Auditors verify environmental claims against evidence:</strong></p>
+<ul>
+<li class=""><code>MAV:A</code> claimed → auditor validates against firewall rules, network diagrams, penetration test results</li>
+<li class=""><code>MAC:H</code> claimed → auditor validates against policy documents, VPN logs, MFA enrollment records</li>
+<li class=""><code>MSC:N</code> claimed → auditor validates against network topology and egress controls</li>
+</ul>
+<p><strong>Auditors verify response to changing E metrics:</strong></p>
+<ul>
+<li class="">If <code>E:U</code> was set last quarter and the CVE just entered CISA KEV, did the organization detect this change?</li>
+<li class="">Did they update the E metric from U to A?</li>
+<li class="">Did they escalate the remediation priority accordingly?</li>
+</ul>
+<p>The principle from the FIRST.org guide: <strong>CVSS-BTE scores are defensible precisely because they are documented and auditable. An organization cannot reduce a score without leaving an evidence trail that auditors can verify.</strong></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="regulatory-applications-by-framework">Regulatory Applications by Framework<a href="#regulatory-applications-by-framework" class="hash-link" aria-label="Direct link to Regulatory Applications by Framework" title="Direct link to Regulatory Applications by Framework" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Regulatory Framework</th><th>CVSS Requirement</th><th>How CVSS v4.0 Helps</th></tr></thead><tbody><tr><td><strong>PCI DSS v4.0</strong></td><td>Risk-based patching; scan + remediate findings</td><td>CVSS-BTE for cardholder data environment scope</td></tr><tr><td><strong>NIST RMF (SP 800-53)</strong></td><td>Vulnerability scanning + prioritized remediation</td><td>CVSS-B as baseline; BTE for System Security Plan</td></tr><tr><td><strong>NIS2 (EU)</strong></td><td>Incident reporting + vulnerability management</td><td>CVSS-BTE documents risk decisions for supervisory authority</td></tr><tr><td><strong>HIPAA</strong></td><td>Risk analysis + risk management</td><td>CVSS-BTE with CR:H for PHI-handling systems</td></tr><tr><td><strong>NERC CIP (OT/ICS)</strong></td><td>Vulnerability management for bulk electric systems</td><td>CVSS-BTE with S:P supplemental for safety systems</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="supply-chain-cvss-scrm-track">Supply Chain CVSS (SCRM Track)<a href="#supply-chain-cvss-scrm-track" class="hash-link" aria-label="Direct link to Supply Chain CVSS (SCRM Track)" title="Direct link to Supply Chain CVSS (SCRM Track)" translate="no">​</a></h3>
+<p>Organizations at Phase 5 embed CVSS requirements in supplier contracts:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#F8F8F2"><span class="token plain">Example supplier contract language:</span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain">1. The Supplier shall disclose CVSS v4.0 Base vectors for all</span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain">   vulnerabilities in delivered software within 5 business days</span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain">   of CVE publication.</span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain">2. The Supplier shall provide software updates or documented</span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain">   mitigations sufficient to enable the Buyer to achieve a</span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain">   CVSS-BTE score of ≤ Medium (6.9) for all High or Critical</span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain">   Base vulnerabilities.</span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain">3. The Supplier shall include CVSS v4.0 vectors for all known</span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain">   vulnerabilities in all Software Bills of Materials (SBOMs).</span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain">4. The Supplier shall notify the Buyer within 24 hours if any</span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain">   vulnerability in delivered software enters the CISA KEV catalog.</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="16-supplemental-metrics-the-overlooked-context-layer">16. Supplemental Metrics: The Overlooked Context Layer<a href="#16-supplemental-metrics-the-overlooked-context-layer" class="hash-link" aria-label="Direct link to 16. Supplemental Metrics: The Overlooked Context Layer" title="Direct link to 16. Supplemental Metrics: The Overlooked Context Layer" translate="no">​</a></h2>
+<p>Supplemental metrics do not change the CVSS score. They add human-readable operational context that the numeric score cannot capture. Think of them as structured analyst notes attached to the vulnerability record.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Metric</th><th>Symbol</th><th>Values</th><th>What It Communicates</th></tr></thead><tbody><tr><td><strong>Safety</strong></td><td>S</td><td>N/P</td><td>Physical safety impact possible? Relevant for OT, medical devices, vehicles</td></tr><tr><td><strong>Automatable</strong></td><td>AU</td><td>N/Y</td><td>Can exploitation be fully automated (worm-like mass exploitation)?</td></tr><tr><td><strong>Recovery</strong></td><td>R</td><td>A/U/I</td><td>Automatic / User-assisted / Irrecoverable</td></tr><tr><td><strong>Value Density</strong></td><td>V</td><td>D/C</td><td>Diffuse (one system affected) / Concentrated (many systems/users affected)</td></tr><tr><td><strong>Vuln Response Effort</strong></td><td>RE</td><td>L/M/H</td><td>Effort required to patch/mitigate: Low (auto-update), Medium (manual), High (complex)</td></tr><tr><td><strong>Provider Urgency</strong></td><td>U</td><td>Clear/Green/Amber/Red</td><td>Vendor&#x27;s urgency assessment</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="au--automatable-exploitation">AU:Y — Automatable Exploitation<a href="#au--automatable-exploitation" class="hash-link" aria-label="Direct link to AU:Y — Automatable Exploitation" title="Direct link to AU:Y — Automatable Exploitation" translate="no">​</a></h3>
+<p><code>AU:Y</code> means an attacker can script the exploit to run against thousands of targets without human intervention. This is the worm-capability indicator.</p>
+<p><strong>Why it matters beyond the CVSS score:</strong></p>
+<p>Log4Shell (<code>AU:Y</code>) was being exploited by automated scanners within 24 hours of POC release. A CVSS-BTE score of 7.4 High with <code>AU:Y</code> requires faster response than an 8.0 High with <code>AU:N</code> that requires a custom, targeted attack chain.</p>
+<p>Real examples with <code>AU:Y</code>:</p>
+<ul>
+<li class="">Log4Shell (CVE-2021-44228) — <code>AU:Y</code>: log any HTTP request, mass exploitation immediate</li>
+<li class="">MOVEit Transfer (CVE-2023-34362) — <code>AU:Y</code>: Cl0p ran fully automated campaign</li>
+<li class="">HTTP/2 Rapid Reset (CVE-2023-44487) — <code>AU:Y</code>: DDoS amplification automated</li>
+<li class="">Heartbleed (CVE-2014-0160) — <code>AU:Y</code>: automated scanners ran within hours</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="s--safety-impact-in-otmedical">S:P — Safety Impact in OT/Medical<a href="#s--safety-impact-in-otmedical" class="hash-link" aria-label="Direct link to S:P — Safety Impact in OT/Medical" title="Direct link to S:P — Safety Impact in OT/Medical" translate="no">​</a></h3>
+<p><code>S:P (Safety: Present)</code> flags that exploitation could result in physical harm to people or property. This metric is essential for:</p>
+<ul>
+<li class="">Industrial control systems (chemical plants, power grids, water treatment)</li>
+<li class="">Medical devices (infusion pumps, ventilators, pacemakers)</li>
+<li class="">Automotive systems (ECU vulnerabilities)</li>
+</ul>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#F8F8F2"><span class="token plain">Example: Vulnerability in a pharmaceutical manufacturing control system</span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain">CVSS-BTE score: 5.9 Medium (due to MAV:A environmental adjustment)</span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain">Supplemental: /S:P (Safety: Present)</span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain">Without S:P context, this looks like a 90-day scheduled patch.</span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain">With S:P context, the medical device safety team must evaluate whether</span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain">the vulnerability could cause incorrect dosing, batch contamination,</span><br></div><div class="token-line" style="color:#F8F8F2"><span class="token plain">or equipment failure — potentially regardless of the numeric CVSS score.</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="r--irrecoverable-systems">R:I — Irrecoverable Systems<a href="#r--irrecoverable-systems" class="hash-link" aria-label="Direct link to R:I — Irrecoverable Systems" title="Direct link to R:I — Irrecoverable Systems" translate="no">​</a></h3>
+<p><code>R:I (Recovery: Irrecoverable)</code> means successful exploitation causes permanent damage that cannot be remediated without hardware replacement, data restoration from backup, or destructive re-imaging.</p>
+<p><strong>Relevant scenarios:</strong></p>
+<ul>
+<li class="">Ransomware affecting backup systems (R:I — cannot restore without the backups)</li>
+<li class="">Firmware corruption on embedded devices (R:I — requires physical device replacement)</li>
+<li class="">Cryptographic key material theft (R:I — compromised keys cannot be &quot;un-stolen&quot;)</li>
+<li class="">Industrial control setpoint modification causing equipment damage (R:I — physical damage)</li>
+</ul></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/cvss/docs/enrichment-tool"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">CVSS v4.0 Enrichment Tool</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/cvss/docs/mistakes"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">The 8 Most Common CVSS Mistakes</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#15-cvss-as-regulatory-framework-the-5-phase-maturity-model" class="table-of-contents__link toc-highlight">15. CVSS as Regulatory Framework: The 5-Phase Maturity Model</a><ul><li><a href="#the-5-phases--scrm-track" class="table-of-contents__link toc-highlight">The 5 Phases + SCRM Track</a></li><li><a href="#the-gaming-prevention-problem" class="table-of-contents__link toc-highlight">The Gaming Prevention Problem</a></li><li><a href="#regulatory-applications-by-framework" class="table-of-contents__link toc-highlight">Regulatory Applications by Framework</a></li><li><a href="#supply-chain-cvss-scrm-track" class="table-of-contents__link toc-highlight">Supply Chain CVSS (SCRM Track)</a></li></ul></li><li><a href="#16-supplemental-metrics-the-overlooked-context-layer" class="table-of-contents__link toc-highlight">16. Supplemental Metrics: The Overlooked Context Layer</a><ul><li><a href="#au--automatable-exploitation" class="table-of-contents__link toc-highlight">AU — Automatable Exploitation</a></li><li><a href="#s--safety-impact-in-otmedical" class="table-of-contents__link toc-highlight">S — Safety Impact in OT/Medical</a></li><li><a href="#r--irrecoverable-systems" class="table-of-contents__link toc-highlight">R — Irrecoverable Systems</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Guide</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/cvss/docs/01-introduction">Introduction</a></li><li class="footer__item"><a class="footer__link-item" href="/cvss/docs/03-vector-string">Vector String</a></li><li class="footer__item"><a class="footer__link-item" href="/cvss/docs/06-worked-examples">Worked Examples</a></li><li class="footer__item"><a class="footer__link-item" href="/cvss/docs/13-cheatsheet">Cheatsheet</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Author</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://medium.com/@1200km" target="_blank" rel="noopener noreferrer" class="footer__link-item">Medium<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://linkedin.com/in/andrey-pautov" target="_blank" rel="noopener noreferrer" class="footer__link-item">LinkedIn<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/anpa1200" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Resources</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.first.org/cvss/calculator/4-0" target="_blank" rel="noopener noreferrer" class="footer__link-item">FIRST.org CVSS Calculator<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank" rel="noopener noreferrer" class="footer__link-item">CISA KEV Catalog<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://www.first.org/epss/" target="_blank" rel="noopener noreferrer" class="footer__link-item">EPSS<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">© 2026 Andrey Pautov · <a href="https://www.paypal.com/donate/?business=W3XDKS7J9XTCG&no_recurring=0&item_name=Buy+me+a+coffee+%28PayPal%29+%E2%80%94+Keep+the+lab+running&currency_code=USD" target="_blank" rel="noopener noreferrer">☕ Buy me a coffee</a></div></div></div></footer></div>
+</body>
+</html>
