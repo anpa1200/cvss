@@ -45,9 +45,12 @@ python3 cvss_enrichment_tool.py \
 The tool implements the three-stage enrichment pipeline in a single automated run:
 
 ```
-CVE IDs → NVD API (Base vector) → CISA KEV (E:A?) → EPSS API (E:P/E:U?)
+CVE IDs → NVD API (Base vector)
+        → CISA KEV (E:A if listed)
+        → EPSS API (⚠ VERIFY flag if ≥ 0.1 — not automatic E:P)
+        → Manual PoC check for flagged CVEs → E:P / E:A if confirmed
         → Apply asset profile (MAV/MAC/CR/IR/AR/MSC...)
-        → Output CVSS-BTE vector + severity band + SLA recommendation
+        → Output enriched vector + heuristic priority + SLA recommendation
 ```
 
 **Stage 1 — Base vector (NVD API 2.0).** For each CVE ID the tool queries `services.nvd.nist.gov` and retrieves the CVSS vector string. It prefers a v4.0 vector; if only a v3.1 vector exists (common for CVEs predating November 2023), it applies threat-only enrichment and flags the result for manual re-scoring at the FIRST.org calculator.
@@ -108,7 +111,7 @@ python3 cvss_enrichment_tool.py \
 # Output (two columns — original severity vs profile-adjusted priority):
 # CVE-2025-32433
 #   NVD source vector:       CVSS v3.1 (v4.0 not yet available from NVD)
-#   KEV:                     YES (added April 2025) → E:A
+#   KEV:                     YES (added June 9, 2025) → E:A
 #   EPSS:                    0.5031
 #   Vendor severity (Base):  Critical [10.0 — worst-case, internet-facing assumed]
 #   Profile applied:         internal_vlan (MAV:A + MAC:H)

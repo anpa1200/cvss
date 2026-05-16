@@ -123,7 +123,7 @@ NVD CVSS v3.1:          Published by NVD
 NVD CVSS v4.0:          Not provided by NVD as of this writing
 Vector source:          Analyst-computed using FIRST.org CVSS v4.0 calculator
                         based on published vulnerability details
-KEV status:             YES — added April 2025
+KEV status:             YES — added June 9, 2025 (due June 30, 2025)
 Date checked:           March 2026
 Note:                   The v4.0 vector below reflects analyst judgment on
                         impact scope. Verify against FIRST.org calculator.

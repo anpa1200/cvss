@@ -48,19 +48,27 @@ SUBSEQUENT SYSTEM (SC/SI/SA):  [Replaces Scope Changed in v3.x]
 ### Exploit Maturity (E) — Decision Flowchart
 
 ```
-Is CVE in CISA KEV?
-  → YES: E:A (Attacked) ─────────────────────────────────────────┐
-  → NO: ↓                                                        │
-                                                                  │
-Is EPSS ≥ 0.10?                                                   │
-  → YES (0.1–0.5): Verify ExploitDB/Metasploit/GitHub → E:P     │
-  → YES (≥ 0.5):  High exploitation probability → E:P minimum   │
-  → NO:  ↓                                                       │
-                                                                  │
-Is there a public exploit? (ExploitDB, Metasploit, GitHub)        │
-  → YES: E:P (Proof of Concept)                                  │
-  → NO:  E:U (Unreported)                                        │
-                                                                  └→ Maximum priority, patch immediately
+Step 1 — Check CISA KEV:
+  CVE in KEV catalog?
+    YES →  E:A  (confirmed active exploitation)           → PATCH IMMEDIATELY
+    NO  ↓
+
+Step 2 — Check for exploit evidence (ExploitDB, Metasploit, GitHub, vendor advisory):
+  Active exploitation or exploit toolkit confirmed? →  E:A
+  Public proof-of-concept exists, no known attacks?  →  E:P
+  No PoC, no reports, no exploit tooling found?      →  E:U
+
+Step 3 — Use EPSS as a triage signal only:
+  EPSS ≥ 0.1  →  ⚠ VERIFY flag — manually check ExploitDB / Metasploit / GitHub
+                  If PoC found through that search → E:P (from Step 2, not from EPSS)
+                  If active exploitation confirmed  → E:A (from Step 2, not from EPSS)
+                  If nothing found → keep E:U
+  EPSS < 0.1  →  E:U (no current exploitation evidence)
+
+EPSS does NOT set E:P or E:A automatically.
+EPSS is a probabilistic exploitation forecast, not proof of PoC availability.
+E:P requires a confirmed public proof-of-concept.
+E:A requires confirmed attacks in the wild or exploit tooling.
 ```
 
 ### Environmental Metric Quick Decisions

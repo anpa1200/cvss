@@ -27,7 +27,7 @@ sidebar_position: 1
 | CVSS vs SSVC | [→ Chapter 8](/docs/cvss-vs-ssvc) |
 | Practical VM Workflow | [→ Chapter 9](/docs/vm-workflow) |
 | CVSS Enrichment Tool | [→ Chapter 10](/docs/enrichment-tool) |
-| Regulatory Framework | [→ Chapter 11](/docs/regulatory) |
+| Regulatory Vulnerability Management Evidence | [→ Chapter 11](/docs/regulatory) |
 | Common Mistakes & Interview Q\&A | [→ Chapter 12](/docs/mistakes) |
 | Quick Reference Cheatsheet | [→ Chapter 13](/docs/cheatsheet) |
 
