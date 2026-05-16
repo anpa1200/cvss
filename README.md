@@ -1,5 +1,9 @@
 # CVSS v4.0 Field Guide
 
+[![CI](https://github.com/anpa1200/cvss/actions/workflows/ci.yml/badge.svg)](https://github.com/anpa1200/cvss/actions/workflows/ci.yml)
+[![Deploy](https://github.com/anpa1200/cvss/actions/workflows/deploy.yml/badge.svg)](https://github.com/anpa1200/cvss/actions/workflows/deploy.yml)
+[![Release](https://img.shields.io/github/v/release/anpa1200/cvss)](https://github.com/anpa1200/cvss/releases)
+
 **[Live site →](https://anpa1200.github.io/cvss/)**
 
 A practitioner guide to applying CVSS v4.0 concepts — Base, Threat, and Environmental metrics — to real vulnerability management decisions. Thirteen chapters covering the full lifecycle from raw scanner output to prioritized, auditable remediation actions.
