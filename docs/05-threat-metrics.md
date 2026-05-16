@@ -10,13 +10,9 @@ sidebar_position: 5
 
 ### The Core Principle
 
-A vulnerability vendor scores a system as if it is:
-- Directly accessible from the internet (AV:N)
-- Running with no compensating controls
-- Processing your most sensitive data
-- Able to reach any system in your network
+CVSS Base metrics represent the intrinsic technical severity of a vulnerability — what happens in a reasonable worst-case scenario on an unmitigated, generic deployment. The vendor who published the score has not seen your network topology, your compensating controls, or your data classification. Environmental metrics are how you apply that local knowledge as documented, auditable adjustments.
 
-Your security team knows this is almost never true for any given system. Environmental metrics encode that knowledge as documented, auditable adjustments.
+Per the [CVSS v4.0 User Guide](https://www.first.org/cvss/user-guide): "The Base Score represents a reasonable worst-case impact across different environments. The Environmental metrics allow organizations to customize scores based on the importance of the vulnerability to them."
 
 ### Practical Environmental Metric Decisions
 

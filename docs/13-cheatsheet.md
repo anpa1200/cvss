@@ -197,6 +197,20 @@ The real-world examples in this guide — Log4Shell, CitrixBleed, MOVEit, Erlang
 
 ---
 
+## Known Limitations of This Guide
+
+| Area | Limitation |
+|------|-----------|
+| **CVSS v4.0 vectors** | Most worked-example vectors are analyst-computed using the FIRST.org calculator. NVD's CVSS v4.0 coverage is incomplete as of publication — many CVEs have only v3.1 NVD scores. Always verify vectors at [FIRST.org calculator](https://www.first.org/cvss/calculator/4-0). |
+| **Enrichment tool scoring** | The tool uses heuristic point-delta approximations, not the official CVSS v4.0 lookup tables. Results are prioritization guidance, not authoritative CVSS-BTE scores. |
+| **EPSS thresholds** | EPSS values used for triage filtering are illustrative. EPSS is a triage signal; only actual exploit evidence (KEV, ExploitDB, Metasploit) should set `E:P` or `E:A`. |
+| **Score examples** | Score approximations (e.g., "~7.4 High") are heuristic estimates. Exact scores depend on the full CVSS v4.0 calculation — verify with the official calculator. |
+| **KEV / EPSS data** | KEV and EPSS data changes daily. All references to KEV status, EPSS scores, and attribution are accurate as of March 2026 and will drift over time. |
+| **Regulatory mapping** | CVSS is a severity scoring tool, not a regulatory framework. Regulatory requirements (PCI DSS, HIPAA, NIS2, etc.) must be evaluated against the actual regulatory text, not this guide. |
+| **Not official FIRST.org documentation** | This guide is an independent practitioner resource. Official CVSS v4.0 documentation: [first.org/cvss/v4-0](https://www.first.org/cvss/v4-0/), [User Guide](https://www.first.org/cvss/user-guide), [Implementation Guide](https://www.first.org/cvss/v4.0/implementation-guide). |
+
+---
+
 *Author: Andrey Pautov*
 *Published: March 2026*
 *Tags: CVSS, Vulnerability Management, CVSSv4, Security, CTI, Risk Management, EPSS, Log4Shell, CitrixBleed*

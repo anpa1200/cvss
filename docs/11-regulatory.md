@@ -1,5 +1,5 @@
 ---
-title: "CVSS as Regulatory Framework"
+title: "CVSS as Evidence for Regulatory Vulnerability Management"
 sidebar_position: 11
 ---
 
@@ -7,9 +7,13 @@ sidebar_position: 11
 ![](/img/cvss/1_VS6SyXxBQgVBvVK7Tgdqzw.png)
 
 
-## 15. CVSS as Regulatory Framework: The 5-Phase Maturity Model
+## 15. Using CVSS as Evidence for Regulatory Vulnerability Management
 
-The CVSS v4.0 lifecycle (CVSS-B → CVSS-BT → CVSS-BTE) maps directly to a regulatory maturity roadmap. This framework was formalized by Rob Arnold (Acorn Pass / CVSS Associates) in the whitepaper "Enhancing National Cyber Resilience: CVSS v4.0 as a Regulatory Framework" (2025).
+:::note CVSS is not a regulatory framework
+CVSS is a **vulnerability severity scoring system**, not a compliance framework. PCI DSS, HIPAA, NIS2, NERC CIP, and NIST RMF are regulatory frameworks. CVSS-BTE scoring can provide documented, auditable evidence for vulnerability management decisions within those frameworks — but CVSS itself does not define the regulatory requirements. Per the [CVSS v4.0 User Guide](https://www.first.org/cvss/user-guide): "CVSS measures severity, not risk."
+:::
+
+The CVSS v4.0 lifecycle (CVSS-B → CVSS-BT → CVSS-BTE) maps well to a regulatory vulnerability management maturity model. This structure was proposed by Rob Arnold (Acorn Pass / CVSS Associates) in the whitepaper "Enhancing National Cyber Resilience: CVSS v4.0 as a Regulatory Framework" (2025), and adapted here as a practical guide for security programs seeking to satisfy regulatory evidence requirements.
 
 ### The 5 Phases + SCRM Track
 

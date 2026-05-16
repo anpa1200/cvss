@@ -48,14 +48,24 @@ FIRST.org describes CVSS v4.0 as a **living score** that matures as information 
 
 ## Walking a CVE Through the Full Lifecycle
 
-**CVE-2024-21762 (FortiOS SSL VPN heap overflow)** — a real example from Fortinet's perimeter device.
+**CVE-2024-21762 (FortiOS SSL VPN out-of-bounds write)** — a real example from Fortinet's perimeter device.
+
+```
+Scoring provenance:
+  CVE:             CVE-2024-21762
+  NVD CVSS v3.1:   9.8 Critical (NVD published)
+  NVD CVSS v4.0:   Not yet provided by NVD as of this writing
+  Vector below:    Analyst-computed via FIRST.org CVSS v4.0 calculator
+  KEV:             Added February 9, 2024
+  Date checked:    March 2026
+```
 
 **Day 0 — Vendor publishes (February 8, 2024):**
 
 ```
-NVD CVSS-B:
+CVSS-B (analyst-computed v4.0 vector):
   CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H
-  Score: 10.0 Critical
+  Score: ~9.6–10.0 Critical (verify at FIRST.org calculator)
 
 At this point: scanner shows 10.0 for every FortiOS-based system you have.
 No exploit confirmed. Default E:X = treated as E:A.
@@ -160,22 +170,40 @@ def load_epss(cve_ids: list) -> dict:
 
 def determine_exploit_maturity(cve_id: str, kev_data: dict, epss_scores: dict) -> str:
     """
-    Determine Exploit Maturity based on KEV and EPSS.
-    Returns the CVSS v4.0 E: value.
+    Determine Exploit Maturity (E:) based on KEV and EPSS.
+
+    IMPORTANT: EPSS is a triage signal, not a CVSS Threat metric oracle.
+    Per the CVSS v4.0 specification:
+      E:A = Attacks are reported (confirmed active exploitation or weaponized tooling)
+      E:P = Public proof-of-concept code exists, but no confirmed attacks
+      E:U = No public PoC, no reported attacks, no exploit tooling found
+
+    EPSS (exploitation probability in next 30 days) is used here to
+    flag CVEs for manual verification — it does NOT directly set E:.
+    A high EPSS score means "check this manually"; only confirmed
+    PoC or active exploitation evidence sets E:P or E:A.
     """
     if cve_id in kev_data:
-        return "E:A"  # Confirmed active exploitation
+        return "E:A"  # CISA KEV = confirmed active exploitation
 
     epss = epss_scores.get(cve_id, 0.0)
     if epss >= 0.5:
-        # EPSS ≥ 50% = high exploitation likelihood → strong POC signal
-        return "E:P"
+        # High EPSS: strong signal — manually verify ExploitDB/Metasploit/vendor advisory
+        # Returning E:P here assumes manual verification found PoC; flag for review
+        return "E:P"   # ← REQUIRES manual confirmation; see note below
     elif epss >= 0.1:
-        # Moderate signal — verify against ExploitDB/Metasploit/GitHub
-        return "E:P"
+        # Moderate EPSS: check ExploitDB and Metasploit before setting E:P
+        # Conservative default: E:U until PoC is confirmed
+        return "E:U"   # ← Set to E:P if searchsploit/Metasploit finds a module
     else:
         # Low EPSS, not in KEV — no exploitation evidence
         return "E:U"
+
+# NOTE: In production, EPSS ≥ 0.1 should trigger a manual check:
+#   searchsploit CVE-XXXX-XXXXX
+#   msfconsole -q -x "search cve:XXXX-XXXXX; exit"
+#   # If a module or exploit is found → upgrade to E:P
+#   # Vendor advisory states "actively exploited" → upgrade to E:A
 
 # Example: Enrich a list of CVEs from your scanner
 cves_from_scanner = [
@@ -208,14 +236,16 @@ The **Exploit Prediction Scoring System (EPSS)** is a machine learning model mai
 - Uses ML trained on NVD data, Metasploit module availability, ExploitDB entries, active threat feeds
 - Free API: `https://api.first.org/data/v1/epss?cve=CVE-XXXX-XXXXX`
 
-**How to combine CVSS + EPSS for prioritization:**
+**How to combine CVSS + EPSS for prioritization (triage, not E: assignment):**
+
+EPSS complements CVSS by answering a different question: *how likely is exploitation in the next 30 days?* High EPSS means "investigate this sooner" — it is a triage prioritizer, not a direct source for setting the `E:` metric. Always verify actual exploit evidence (KEV, ExploitDB, Metasploit) before assigning `E:P` or `E:A`.
 
 ```
-Priority Matrix:
+Triage Priority Matrix (EPSS as urgency signal, not E: value):
                     EPSS Low (<0.1)    EPSS Medium (0.1-0.5)    EPSS High (>0.5)
-CVSS High/Critical   → Schedule          → Priority                → Immediate
-CVSS Medium          → Backlog           → Schedule                → Priority
-CVSS Low             → Accept/Ignore     → Backlog                 → Schedule
+CVSS High/Critical   → Schedule          → Verify + prioritize     → Verify + act fast
+CVSS Medium          → Backlog           → Schedule                → Verify + prioritize
+CVSS Low             → Accept/Monitor    → Backlog                 → Schedule
 
 Real examples (approximate, as of early 2024):
   CVE-2021-44228 (Log4Shell):   CVSS 10.0, EPSS ~0.97 → Immediate
@@ -235,26 +265,36 @@ curl -s "https://api.first.org/data/v1/epss?cve=CVE-2021-44228" \
 
 ### The Step-by-Step Threat Metric Determination Workflow
 
+Per the [CVSS v4.0 specification](https://www.first.org/cvss/v4-0/), Exploit Maturity (`E:`) is defined by the *evidence available*, not by statistical prediction. EPSS is a useful triage filter, but it does not set `E:` — only actual exploit evidence does.
+
 ```
 For each CVE in your scanner output:
 
 Step 1: Check CISA KEV (30 seconds, fully automated)
-  → IN KEV?  → Set E:A, mark as highest priority
+  → IN KEV?  → E:A (confirmed active exploitation — highest priority)
   → NOT IN KEV? → Continue to Step 2
 
-Step 2: Check EPSS score
-  → EPSS ≥ 0.5?  → Strong exploitation likelihood → E:P at minimum
-  → EPSS 0.1–0.5? → Moderate likelihood → E:P (verify against ExploitDB)
-  → EPSS < 0.1?  → Low likelihood → Continue to Step 3
+Step 2: Check vendor advisory / CERT advisories
+  → Vendor states "actively exploited" or "in the wild"? → E:A
+  → No such statement? → Continue to Step 3
 
-Step 3: Check ExploitDB / Metasploit / GitHub
+Step 3: Check EPSS score (triage filter only — does NOT set E: directly)
+  → EPSS ≥ 0.1?  → Prioritize manual verification in Step 4
+  → EPSS < 0.1?  → Low exploitation probability; Step 4 still applies
+
+Step 4: Check ExploitDB / Metasploit / public PoC repositories
   searchsploit CVE-XXXX-XXXXX
   msfconsole -q -x "search cve:XXXX-XXXXX type:exploit; exit"
-  → Module/exploit found? → E:P
-  → Nothing found? → Continue to Step 4
 
-Step 4: Default assignment
-  → No KEV, no EPSS signal, no public exploit → E:U
+  → Functional exploit in Metasploit / ExploitDB? → E:P
+  → Public PoC on GitHub / researcher publication? → E:P
+  → Exploit kit or commercial tooling? → E:A (weaponized)
+  → Nothing found? → Continue to Step 5
+
+Step 5: Default assignment
+  → No KEV, no advisory, no public exploit evidence → E:U
+  (Setting E:U for CVEs with no exploit evidence is not optimism — it
+   reflects the absence of evidence that E:A or E:P applies.)
 ```
 
 ---

@@ -143,10 +143,25 @@ def load_epss_batch(cve_ids: list) -> dict:
     return scores
 
 def determine_e_value(cve_id: str, kev: dict, epss: dict) -> str:
+    """
+    Determine E: value from KEV and EPSS.
+
+    IMPORTANT: EPSS is used here as a triage filter only.
+    Per the CVSS v4.0 spec, E: is set by actual exploit evidence:
+      E:A = confirmed active exploitation (KEV, vendor advisory, exploit tooling)
+      E:P = public PoC exists, no confirmed attacks
+      E:U = no public PoC, no reports, no tooling
+
+    This function returns E:A for KEV entries (confirmed) and E:U as
+    the conservative default for everything else. CVEs with EPSS ≥ 0.1
+    are flagged in the output for manual verification against ExploitDB
+    and Metasploit before being upgraded to E:P in your tracking system.
+    """
     if cve_id in kev:
-        return "A"
-    e = epss.get(cve_id, 0.0)
-    return "P" if e >= 0.1 else "U"
+        return "A"   # Confirmed active exploitation
+    # Conservative: EPSS alone does not set E:P
+    # High EPSS → flag for manual exploit check (see output column "Verify")
+    return "U"  # Set manually to "P" after confirming PoC exists
 
 def severity_band(score: float) -> tuple[str, str]:
     if score >= 9.0:  return "Critical", "24–72 hours"
@@ -235,12 +250,16 @@ def main():
 
     results.sort(key=lambda r: r.bte_score, reverse=True)
 
-    print(f"{'CVE':<22} {'Asset':<18} {'Zone':<18} {'KEV':>4} {'EPSS':>6} {'E':>3} {'BTE':>5} {'Severity':<10} {'SLA'}")
-    print("─" * 105)
+    print(f"{'CVE':<22} {'Asset':<18} {'Zone':<18} {'KEV':>4} {'EPSS':>6} {'E':>3} {'BTE':>5} {'Severity':<10} {'SLA':<14} {'Action'}")
+    print("─" * 120)
     for r in results:
         kev_flag = "YES" if r.in_kev else " no"
+        # Flag high-EPSS non-KEV CVEs for manual exploit verification
+        action = ""
+        if not r.in_kev and r.epss >= 0.1:
+            action = "⚠ Verify PoC (EPSS high)"
         print(f"{r.cve_id:<22} {r.asset_name:<18} {r.zone:<18} {kev_flag:>4} "
-              f"{r.epss:>6.3f} E:{r.e_value:>1} {r.bte_score:>4.1f} {r.severity:<10} {r.sla}")
+              f"{r.epss:>6.3f} E:{r.e_value:>1} {r.bte_score:>4.1f} {r.severity:<10} {r.sla:<14} {action}")
 
 if __name__ == "__main__":
     main()

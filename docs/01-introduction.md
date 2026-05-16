@@ -37,39 +37,42 @@ sidebar_position: 1
 
 Every security team has a vulnerability scanner. Every scanner produces a list with numbers. And almost every team treats those numbers as the truth — sorting by score descending, starting at 9.8, working down.
 
-This is wrong. And CVSS v4.0 was designed to fix it.
+CVSS v4.0 was designed to give security teams the tools to move beyond that.
 
-The CVSS SIG (Special Interest Group), which maintains the standard at FIRST.org, makes this point explicitly in the Consumer Implementation Guide: **the Base score is a worst-case estimate for an unmitigated system in a generic environment, produced by a vendor who has never seen your network**. It is a starting point, not an answer.
+The CVSS SIG (Special Interest Group), which maintains the standard at FIRST.org, is explicit in the [Consumer Implementation Guide](https://www.first.org/cvss/v4.0/implementation-guide): **CVSS-B represents a reasonable worst-case technical severity assessment for an unmitigated vulnerability, without organization-specific threat context or environmental factors applied.** It is a starting point for prioritization — not a complete risk score.
 
-### The 3–5% Problem
+:::note What this guide is
+This is a practitioner guide to applying CVSS v4.0 concepts — Base, Threat, and Environmental metrics — to real vulnerability management decisions. The CVSS v4.0 vectors used in worked examples are analyst-computed using the [FIRST.org CVSS v4.0 calculator](https://www.first.org/cvss/calculator/4-0), as NVD's v4.0 coverage is still incomplete as of publication (many CVEs still show v3.1 scores only from NVD). This guide is not official FIRST.org documentation.
+:::
 
-According to CISA and multiple published threat intelligence studies, only **3–5% of published CVEs have a known, functional exploit at any given time**. The Exploit Prediction Scoring System (EPSS), maintained by FIRST.org, corroborates this: the median EPSS score across all published CVEs hovers below 0.05 (5% probability of exploitation within 30 days).
+### The Exploitation Gap
 
-Yet the default CVSS calculation assumes a mature, weaponized exploit exists for every vulnerability. This means every score you see in your scanner — before you apply Threat and Environmental metrics — is calculated under an assumption that is false for 95–97% of CVEs.
+The FIRST.org EPSS model paper (Jacobs & Romanosky, 2023) reports that at any given time, fewer than 5% of published CVEs have a known working exploit in use. The EPSS dataset itself shows the median EPSS score across all published CVEs well below 0.05 — meaning less than a 5% predicted probability of exploitation within 30 days for the typical CVE. ([FIRST.org EPSS Model](https://www.first.org/epss/model), as of 2024.)
+
+When `E:` is left as `E:X` (Not Defined) — the default from NVD and most scanners — CVSS v4.0 treats it equivalent to `E:A` (Attacked), producing the worst-case score. For CVEs with no exploit evidence, this is an inaccurate starting assumption that inflates every score in your scanner output.
 
 ### The Operational Consequence
 
 Consider a mid-size organization's typical scanner output:
 
 ```
-Scanner report — typical enterprise environment:
+Illustrative example — representative enterprise scanner report:
   Total CVEs:        847
-  Critical (9.0+):    94
+  Critical (9.0+):    94  (all scored with E:X default — treated as E:A)
   High (7.0–8.9):    203
 
-With Base scores only, approximate remediation timeline:
-  94 Critical × ~8 hours each = 752 analyst-hours
-  203 High × ~4 hours each   = 812 analyst-hours
+After applying Threat enrichment (CISA KEV, EPSS, ExploitDB checks):
+  ~5 CVEs confirmed exploited (CISA KEV) or with public PoC + internet exposure
+  ~22 CVEs with exploit signal (E:P) on accessible systems
 
-With Threat + Environmental enrichment (conservative estimate):
-  ~5 true Critical (KEV or active exploit, exposed system): 40 hours
-  ~22 true High (POC exists OR exposure without controls): 88 hours
-
-Reduction: from ~1,564 analyst-hours to ~128 analyst-hours
-— a 92% reduction in wasted effort
+After applying Environmental enrichment (asset context, network zones):
+  ~5 true Critical (E:A + internet-facing, no compensating controls)
+  ~22 High (E:P + exposure or E:A + internal with controls)
 ```
 
-CVSS v4.0 provides the mechanism to achieve this reduction. This guide shows you exactly how.
+The numbers vary by environment. The principle is consistent: raw Base scores overstate urgency for most vulnerabilities, and Threat + Environmental enrichment concentrates effort where it actually matters.
+
+CVSS v4.0 provides the mechanism to achieve this. This guide shows you exactly how.
 
 ---
 
@@ -143,7 +146,7 @@ The old v3.x Temporal metric group is now the **Threat** metric group, containin
 | **POC** | P | Proof of Concept exists publicly | Moderate score reduction |
 | **Unreported** | U | No public exploit evidence | Significant score reduction |
 
-**The E:X trap:** When a CVE is published with no Exploit Maturity specified — which is the default from NVD and most scanners — CVSS v4.0 calculates as if `E:A`. If you have 500 CVEs and never set Exploit Maturity, you are treating all 500 as actively exploited. Setting `E:U` for CVEs with no exploit evidence is not optimism — it is accuracy.
+**The E:X behavior:** When a CVE is published with no Exploit Maturity specified — the default from NVD and most scanners — CVSS v4.0 calculates as if `E:A`, producing the worst-case score. Per the [CVSS v4.0 specification](https://www.first.org/cvss/v4-0/), `E:X` is defined as "the value that gives the worst score." If you have 500 CVEs and never set Exploit Maturity, you are scoring all 500 as actively exploited. Setting `E:U` for CVEs with no exploit evidence is not optimism — it reflects the absence of evidence that `E:A` or `E:P` applies.
 
 ### Cleaner Naming: CVSS-B, CVSS-BT, CVSS-BTE
 

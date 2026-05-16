@@ -6,7 +6,11 @@ sidebar_position: 10
 ![](/img/cvss/1_CkcYfsDiA-sSCgAXK0SMZg.png)
 
 
-## CVSS v4.0 Enrichment Tool
+## CVSS v4.0 Enrichment and Prioritization Tool
+
+:::warning Heuristic scoring — not a CVSS v4.0 calculator
+The enrichment tool uses **empirical point-delta heuristics** to approximate CVSS-BTE scores, not the official CVSS v4.0 scoring algorithm (which uses lookup tables, not formulas). Outputs should be treated as **prioritization guidance**, not authoritative CVSS-BTE scores. For authoritative scoring, use the [FIRST.org CVSS v4.0 calculator](https://www.first.org/cvss/calculator/4-0) with the vector strings the tool produces.
+:::
 
 The pipeline described throughout this section is available as a standalone command-line tool: **[cvss_enrichment_tool](https://github.com/anpa1200/cvss_4.0)** (GitHub).
 
@@ -48,23 +52,45 @@ CVE IDs → NVD API (Base vector) → CISA KEV (E:A?) → EPSS API (E:P/E:U?)
 
 **Stage 1 — Base vector (NVD API 2.0).** For each CVE ID the tool queries `services.nvd.nist.gov` and retrieves the CVSS vector string. It prefers a v4.0 vector; if only a v3.1 vector exists (common for CVEs predating November 2023), it applies threat-only enrichment and flags the result for manual re-scoring at the FIRST.org calculator.
 
-**Stage 2 — Threat enrichment (KEV + EPSS).** The tool downloads the full CISA KEV catalog in a single request and checks each CVE against it. If listed → `E:A`. Otherwise it queries the FIRST.org EPSS API: EPSS ≥ 0.5 or ≥ 0.1 → `E:P`; below 0.1 → `E:U`.
+**Stage 2 — Threat enrichment (KEV + EPSS).** The tool downloads the full CISA KEV catalog in a single request and checks each CVE against it. If listed → `E:A` (confirmed exploitation). For non-KEV CVEs, EPSS is used as a **triage signal** to flag CVEs for manual verification — it does not directly set `E:P`. See the output "Verify" column for CVEs that need exploit evidence review before assigning `E:P`.
 
 **Stage 3 — Environmental enrichment (asset profile).** Modified Base metrics and Security Requirements from the selected profile are appended to the vector. The tool ships with six built-in profiles — `internet_facing`, `internal_vlan`, `isolated_ot`, `dev_test`, `healthcare_ehr`, `pci_payment` — covering the most common deployment contexts described in this article.
 
 ### Output
 
-The tool prints a severity-ranked table and optionally writes CSV (`--output`) or JSON (`--json`) for import into ticket systems or dashboards:
+The tool prints a severity-ranked table and optionally writes CSV (`--output`) or JSON (`--json`) for import into ticket systems or dashboards.
+
+The table shows four distinct concepts — keep them separate:
+- **CVSS version**: the version NVD provides (often still 3.1 for older CVEs)
+- **KEV / EPSS**: threat intelligence inputs
+- **E:** value: analyst-assigned exploit maturity
+- **Priority score / Severity / SLA**: the heuristic-adjusted output for triage
+
+**Example — `internet_facing` profile (no environmental reduction applies):**
 
 ```
-CVE                   CVSS   KEV     EPSS  E      Severity    SLA
-──────────────────────────────────────────────────────────────────
-CVE-2021-44228         3.1   YES   0.9446  E:A    Critical    24–72 hours
-CVE-2023-4966          3.1   YES   0.9435  E:A    Critical    24–72 hours
-CVE-2023-34362         3.1   YES   0.9437  E:A    Critical    24–72 hours
-CVE-2024-21762         3.1   YES   0.9308  E:A    Critical    24–72 hours
-CVE-2025-32433         3.1   YES   0.5031  E:A    Critical    24–72 hours
+CVE                   CVSS   KEV     EPSS  E      Priority    Severity    SLA
+────────────────────────────────────────────────────────────────────────────────
+CVE-2021-44228         3.1   YES   0.9446  E:A    ~10.0       Critical    24–72 hours
+CVE-2023-4966          3.1   YES   0.9435  E:A    ~9.4        Critical    24–72 hours
+CVE-2023-34362         3.1   YES   0.9437  E:A    ~9.8        Critical    24–72 hours
+CVE-2024-21762         3.1   YES   0.9308  E:A    ~9.6        Critical    24–72 hours
+CVE-2025-32433         3.1   YES   0.5031  E:A    ~9.6        Critical    24–72 hours
 ```
+
+**Example — same CVEs with `internal_vlan` profile (MAV:A + MAC:H applied):**
+
+```
+CVE                   CVSS   KEV     EPSS  E      Priority    Severity    SLA
+────────────────────────────────────────────────────────────────────────────────
+CVE-2021-44228         3.1   YES   0.9446  E:A    ~7.4        High        30 days
+CVE-2023-4966          3.1   YES   0.9435  E:A    ~7.0        High        30 days
+CVE-2023-34362         3.1   YES   0.9437  E:A    ~7.2        High        30 days
+CVE-2024-21762         3.1   YES   0.9308  E:A    ~7.3        High        30 days
+CVE-2025-32433         3.1   YES   0.5031  E:A    ~6.5        Medium      90 days
+```
+
+The same CVE list — dramatically different priorities depending on your actual network zone. The internet_facing profile produces Criticals requiring immediate action; internal_vlan produces Highs and Mediums for your next maintenance window. Both sets of numbers are **heuristic approximations** — verify important findings against the FIRST.org calculator using the vector strings in the output.
 
 Full documentation, profile definitions, and NVD API key instructions are in the repository README: **https://github.com/anpa1200/cvss_4.0**
 
@@ -79,10 +105,20 @@ python3 cvss_enrichment_tool.py \
   --cves CVE-2025-32433 \
   --profile internal_vlan
 
-# Output:
-# CVE-2025-32433  CVSS: 4.0  KEV: YES  EPSS: 0.5031  E: E:A  Severity: Critical  SLA: 24–72 hours
-# BTE vector: CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/E:A/MAV:A/MAC:H
-# BTE Score: ~6.5 Medium  [internal_vlan profile applied]
+# Output (two columns — original severity vs profile-adjusted priority):
+# CVE-2025-32433
+#   NVD source vector:       CVSS v3.1 (v4.0 not yet available from NVD)
+#   KEV:                     YES (added April 2025) → E:A
+#   EPSS:                    0.5031
+#   Vendor severity (Base):  Critical [10.0 — worst-case, internet-facing assumed]
+#   Profile applied:         internal_vlan (MAV:A + MAC:H)
+#   Adjusted priority:       ~6.5 Medium [heuristic — verify at FIRST.org calculator]
+#   SLA recommendation:      90 days (patch at next maintenance window)
+#   Enriched vector:         CVSS:4.0/AV:N/.../E:A/MAV:A/MAC:H
+#
+# NOTE: E:A (CISA KEV) is confirmed. Priority reduction is from environmental
+# profile only (system is not internet-accessible). Do NOT defer indefinitely —
+# if network posture changes, this becomes Critical again.
 ```
 
 **Batch from scanner — CSV input, JSON output for ticketing system:**
