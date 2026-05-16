@@ -113,7 +113,7 @@ python3 cvss_enrichment_tool.py \
 #   NVD source vector:       CVSS v3.1 (v4.0 not yet available from NVD)
 #   KEV:                     YES (added June 9, 2025) → E:A
 #   EPSS:                    0.5031
-#   Vendor severity (Base):  Critical [10.0 — worst-case, internet-facing assumed]
+#   Vendor severity (Base):  Critical [10.0 — NVD base, reachable-network worst-case]
 #   Profile applied:         internal_vlan (MAV:A + MAC:H)
 #   Adjusted priority:       ~6.5 Medium [heuristic — verify at FIRST.org calculator]
 #   SLA recommendation:      90 days (patch at next maintenance window)
