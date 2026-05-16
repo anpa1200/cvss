@@ -185,7 +185,7 @@ COMPLEMENTARY FRAMEWORKS:
 | 8 | [CVSS vs SSVC](/docs/cvss-vs-ssvc) | SSVC for triage, CVSS for documentation and compliance |
 | 9 | [Practical VM Workflow](/docs/vm-workflow) | Scanner CSV → enriched ticket in 6 steps + Python script |
 | 10 | [Enrichment Tool](/docs/enrichment-tool) | CLI that automates the full pipeline for any CVE list |
-| 11 | [Regulatory Framework](/docs/regulatory) | 5-phase maturity model + audit evidence checklist |
+| 11 | [Regulatory Evidence](/docs/regulatory) | 5-phase maturity model + audit evidence checklist |
 | 12 | [Mistakes & Interview Q&A](/docs/mistakes) | 8 errors to avoid + 6 interview questions |
 | 13 | [Cheatsheet](/docs/cheatsheet) | This page |
 

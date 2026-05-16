@@ -136,7 +136,7 @@ Vector: CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H
 Score:  10.0 Critical
 
 Reading the vector:
-  AV:N  — SSH is exposed (vendor assumes internet-facing, worst case)
+  AV:N  — AV:N reflects the reachable-network worst-case before local exposure controls are applied
   AC:L  — Exploitation is straightforward once you reach the SSH port
   AT:N  — No special configuration required; default OTP SSH setup is vulnerable
   PR:N  — Pre-authentication RCE — no credentials needed
