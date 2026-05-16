@@ -21,8 +21,8 @@ sidebar_position: 9
 │  Step 2: THREAT ENRICHMENT (automated, applies to all CVEs)   │
 │    ┌─────────────────────────────────────────────────────┐    │
 │    │ CISA KEV API → E:A if listed                         │    │
-│    │ EPSS API → E:P if ≥ 0.1, E:U if < 0.1              │    │
-│    │ Override: E:A if KEV regardless of EPSS              │    │
+│    │ EPSS API → ⚠ VERIFY flag if ≥ 0.1 (not E:P)        │    │
+│    │ Manual PoC/exploit check → E:P if confirmed          │    │
 │    └─────────────────────────────────────────────────────┘    │
 │                                                               │
 │  Step 3: ASSET GROUPING                                       │

@@ -152,4 +152,4 @@ print(f"SSVC: {result}")   # → Immediate
 | [Introduction](/docs/introduction) | Why CVSS Base score alone fails and what the alternatives are |
 | [Threat & Environmental Metrics](/docs/threat-metrics) | The E: metric that drives both CVSS and SSVC exploitation status |
 | [Practical VM Workflow](/docs/vm-workflow) | Where to slot SSVC vs CVSS in your daily process |
-| [Regulatory Framework](/docs/regulatory) | When CVSS is legally required vs where SSVC is government-endorsed |
+| [Regulatory Evidence](/docs/regulatory) | When CVSS is legally required vs where SSVC is government-endorsed |

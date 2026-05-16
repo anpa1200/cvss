@@ -65,8 +65,8 @@ const SECTIONS = [
     links: [{ label: 'Tool Overview', to: '/docs/enrichment-tool' }],
   },
   {
-    num: '11', emoji: '📋', title: 'Regulatory Framework',
-    desc: '5-Phase CVSS Maturity Model. Map your program against NIS2, ISO 27001, SOC 2, PCI-DSS.',
+    num: '11', emoji: '📋', title: 'Regulatory Evidence',
+    desc: '5-Phase CVSS Maturity Model. Using CVSS-BTE as auditable evidence for NIS2, PCI-DSS, HIPAA, NERC CIP — not CVSS as a framework.',
     to: '/docs/regulatory',
     links: [{ label: '5-Phase Model', to: '/docs/regulatory' }, { label: 'Supplemental Metrics', to: '/docs/regulatory' }],
   },

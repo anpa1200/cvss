@@ -149,7 +149,7 @@ Contains one metric: **Exploit Maturity (E)**.
 | Source | Access | What It Tells You |
 |--------|--------|------------------|
 | **CISA KEV Catalog** | Free API | If listed: `E:A`. CISA only adds CVEs confirmed exploited in the wild. |
-| **EPSS Score** | Free API (FIRST.org) | Probability (0–1) of exploitation within 30 days. EPSS ≥ 0.1 → verify for `E:P`; EPSS ≥ 0.5 → strong `E:P` signal |
+| **EPSS Score** | Free API (FIRST.org) | Probability (0–1) of exploitation within 30 days. High EPSS → ⚠ VERIFY flag only — check ExploitDB / Metasploit / GitHub. Does not set `E:P` automatically. |
 | **Metasploit Framework** | Free | Module present = functional exploit exists → `E:P`; if exploit is marked "excellent" → `E:P` at minimum |
 | **ExploitDB / searchsploit** | Free | Exploit code published → `E:P` |
 | **GitHub public repos** | Free | CVE-XXXX-XXXXX repos with working code → `E:P` |

@@ -174,5 +174,5 @@ See [Chapter 5 — Threat & Environmental Metrics](/docs/threat-metrics) for the
 |---------|-----------------|
 | [Threat & Environmental Metrics](/docs/threat-metrics) | How to set CR/IR/AR and Modified Base metrics with evidence |
 | [Worked Examples](/docs/worked-examples) | Real CVEs scored in different deployment contexts |
-| [Regulatory Framework](/docs/regulatory) | How industry profiles map to HIPAA, PCI DSS, NERC CIP |
+| [Regulatory Evidence](/docs/regulatory) | How industry profiles map to HIPAA, PCI DSS, NERC CIP |
 | [Practical VM Workflow](/docs/vm-workflow) | Using profiles in your end-to-end VM process |
