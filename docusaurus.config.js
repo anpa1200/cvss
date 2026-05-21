@@ -59,6 +59,10 @@ const config = {
         isCloseable: true,
       },
       navbar: {
+        logo: {
+          alt: 'Site logo',
+          src: 'img/logo.png',
+        },
         title: 'CVSS v4.0 Field Guide',
         items: [
           {
