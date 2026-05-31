@@ -12,10 +12,29 @@ const config = {
 
   organizationName: 'anpa1200',
   projectName: 'cvss',
+
+  headTags: [
+    {
+      tagName: 'script',
+      attributes: {
+        async: 'true',
+        src: 'https://www.googletagmanager.com/gtag/js?id=G-TMTG21RVHM',
+      },
+    },
+    {
+      tagName: 'script',
+      attributes: {},
+      innerHTML: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-TMTG21RVHM');
+      `,
+    },
+  ],
   trailingSlash: false,
 
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'throw',
 
   i18n: {
     defaultLocale: 'en',
@@ -24,6 +43,9 @@ const config = {
 
   markdown: {
     format: 'detect',
+    hooks: {
+      onBrokenMarkdownLinks: 'throw',
+    },
   },
 
   presets: [
@@ -53,7 +75,7 @@ const config = {
       },
       announcementBar: {
         id: 'auth_banner',
-        content: '⚠️ All scoring examples use publicly available CVE data from NVD, FIRST.org, and CISA KEV. Always validate scores against your own environment.',
+        content: 'All scoring examples use publicly available CVE data from NVD, FIRST.org, and CISA KEV. Always validate scores against your own environment.',
         backgroundColor: '#1a1a2e',
         textColor: '#e94560',
         isCloseable: true,
@@ -118,7 +140,7 @@ const config = {
             ],
           },
         ],
-        copyright: `© ${new Date().getFullYear()} Andrey Pautov · <a href="https://www.paypal.com/donate/?business=W3XDKS7J9XTCG&no_recurring=0&item_name=Buy+me+a+coffee+%28PayPal%29+%E2%80%94+Keep+the+lab+running&currency_code=USD" target="_blank" rel="noopener noreferrer">☕ Buy me a coffee</a>`,
+        copyright: `© ${new Date().getFullYear()} Andrey Pautov · <a href="https://www.paypal.com/donate/?business=W3XDKS7J9XTCG&no_recurring=0&item_name=Buy+me+a+coffee+%28PayPal%29+%E2%80%94+Keep+the+lab+running&currency_code=USD" target="_blank" rel="noopener noreferrer">Buy me a coffee</a>`,
       },
       prism: {
         theme: prismThemes.dracula,
