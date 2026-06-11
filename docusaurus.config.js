@@ -7,7 +7,7 @@ const config = {
   tagline: 'The Practical Field Guide for Vulnerability Management',
   favicon: 'img/favicon.ico',
 
-  url: 'https://anpa1200.github.io',
+  url: 'https://1200km.com',
   baseUrl: '/cvss/',
 
   organizationName: 'anpa1200',
@@ -104,7 +104,7 @@ const config = {
             position: 'right',
           },
           {
-            href: 'https://anpa1200.github.io/',
+            href: 'https://1200km.com/',
             label: 'Main Page',
             position: 'right',
             className: 'navbar-portfolio-btn',
