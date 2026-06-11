@@ -3,7 +3,7 @@ title: "Industry-Specific Scoring"
 sidebar_position: 7
 ---
 
-![](/img/cvss/1_tm9OPB1s40rEvjNIP2ARiQ.png)
+![CVSS v4.0 — Industry-Specific Scoring](/img/cvss/1_tm9OPB1s40rEvjNIP2ARiQ.png)
 
 
 ## 12. Industry-Specific Scoring: Healthcare, Finance, OT/ICS

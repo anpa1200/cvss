@@ -3,7 +3,7 @@ title: "Threat & Environmental Metrics"
 sidebar_position: 5
 ---
 
-![](/img/cvss/1_ojvuO08eeq7sHLCxfQT4DA.png)
+![CVSS v4.0 — Threat & Environmental Metrics](/img/cvss/1_ojvuO08eeq7sHLCxfQT4DA.png)
 
 
 ## 7. Environmental Metrics: Scoring for Your Environment

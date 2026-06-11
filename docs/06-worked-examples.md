@@ -245,9 +245,9 @@ no write access to production systems:
 
 ## 10. Worked Example 3: Firmware Report — 18 Criticals Become Medium
 
-![](/img/cvss/1_eY9fGmcZJ_M1qajmdHXeBg.png)
-![](/img/cvss/1_BlS9ghtDCXWr-Lc5OjtY9A.png)
-![](/img/cvss/1_97sxvbu02pAvKM1TZBlSCQ.png)
+![CVSS v4.0 — Worked Examples: Real CVEs — 10. Worked Example 3: Firmware Report — 18 Criticals Become Medium](/img/cvss/1_eY9fGmcZJ_M1qajmdHXeBg.png)
+![CVSS v4.0 — Worked Examples: Real CVEs — 10. Worked Example 3: Firmware Report — 18 Criticals Become Medium (view 2)](/img/cvss/1_BlS9ghtDCXWr-Lc5OjtY9A.png)
+![CVSS v4.0 — Worked Examples: Real CVEs — 10. Worked Example 3: Firmware Report — 18 Criticals Become Medium (view 3)](/img/cvss/1_97sxvbu02pAvKM1TZBlSCQ.png)
 
 
 This example demonstrates how Environmental metrics transform a firmware scanner report into an actionable prioritized list.

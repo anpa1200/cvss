@@ -3,7 +3,7 @@ title: "The Practical VM Workflow"
 sidebar_position: 9
 ---
 
-![](/img/cvss/1_8a38jCuwENp5flLnmWAj7g.png)
+![CVSS v4.0 — The Practical VM Workflow](/img/cvss/1_8a38jCuwENp5flLnmWAj7g.png)
 
 
 ## 14. The Practical VM Workflow: From Scanner Output to Prioritized Action

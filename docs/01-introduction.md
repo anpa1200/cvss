@@ -3,7 +3,7 @@ title: "Introduction: CVSS Is a Tool, Not a Score"
 sidebar_position: 1
 ---
 
-![](/img/cvss/1_B9qDekxyxZ4e_C-SbSYhgw.png)
+![CVSS v4.0 — Introduction: CVSS Is a Tool, Not a Score](/img/cvss/1_B9qDekxyxZ4e_C-SbSYhgw.png)
 
 
 # CVSS v4.0: The Practical Field Guide for Vulnerability Management
@@ -78,11 +78,11 @@ CVSS v4.0 provides the mechanism to achieve this. This guide shows you exactly h
 
 ## 1. What Changed in v4.0 — and Why It Matters
 
-![](/img/cvss/1_-B_wNZ8-J12IGCQN695TVw.png)
-![](/img/cvss/1_9K7ZVsd6Yk6Y8t_cD1XOQQ.png)
-![](/img/cvss/1_Ztb_ZKPbhCx0XKTKyoRmvQ.png)
-![](/img/cvss/1__T8ZhwZzVovfebnNGz6buw.png)
-![](/img/cvss/1_87hv3fMjAi_z6OEP3aJvMA.png)
+![CVSS v4.0 — Introduction: CVSS Is a Tool, Not a Score — 1. What Changed in v4.0 — and Why It Matters](/img/cvss/1_-B_wNZ8-J12IGCQN695TVw.png)
+![CVSS v4.0 — Introduction: CVSS Is a Tool, Not a Score — 1. What Changed in v4.0 — and Why It Matters (view 2)](/img/cvss/1_9K7ZVsd6Yk6Y8t_cD1XOQQ.png)
+![CVSS v4.0 — Introduction: CVSS Is a Tool, Not a Score — 1. What Changed in v4.0 — and Why It Matters (view 3)](/img/cvss/1_Ztb_ZKPbhCx0XKTKyoRmvQ.png)
+![CVSS v4.0 — Introduction: CVSS Is a Tool, Not a Score — 1. What Changed in v4.0 — and Why It Matters (view 4)](/img/cvss/1__T8ZhwZzVovfebnNGz6buw.png)
+![CVSS v4.0 — Introduction: CVSS Is a Tool, Not a Score — 1. What Changed in v4.0 — and Why It Matters (view 5)](/img/cvss/1_87hv3fMjAi_z6OEP3aJvMA.png)
 
 
 CVSS v4.0 was released on November 1, 2023. The changes are more significant than any previous version update — v4.0 is effectively a redesign of the impact and temporal models.

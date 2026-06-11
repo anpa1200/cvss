@@ -3,7 +3,7 @@ title: "The CVSS Scoring Lifecycle"
 sidebar_position: 4
 ---
 
-![](/img/cvss/1_jyrczXiPUvm7eSD8eIaqbA.png)
+![CVSS v4.0 — The CVSS Scoring Lifecycle](/img/cvss/1_jyrczXiPUvm7eSD8eIaqbA.png)
 
 
 ## 5. The CVSS Lifecycle: CVSS-B → CVSS-BT → CVSS-BTE

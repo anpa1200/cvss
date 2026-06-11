@@ -3,10 +3,10 @@ title: "Quick Reference Cheatsheet"
 sidebar_position: 13
 ---
 
-![](/img/cvss/1_kxsiKTOJOevS1TrQ_rs1gg.png)
-![](/img/cvss/1_lh8yzf7Ov-0DYt0INQnnxA.png)
-![](/img/cvss/1_GHhF19IjqW-koABjMuvNRA.png)
-![](/img/cvss/1_r9N4JxU0lxHj7dUqbw9Bog.png)
+![CVSS v4.0 — Quick Reference Cheatsheet](/img/cvss/1_kxsiKTOJOevS1TrQ_rs1gg.png)
+![CVSS v4.0 — Quick Reference Cheatsheet (view 2)](/img/cvss/1_lh8yzf7Ov-0DYt0INQnnxA.png)
+![CVSS v4.0 — Quick Reference Cheatsheet (view 3)](/img/cvss/1_GHhF19IjqW-koABjMuvNRA.png)
+![CVSS v4.0 — Quick Reference Cheatsheet (view 4)](/img/cvss/1_r9N4JxU0lxHj7dUqbw9Bog.png)
 
 
 ## 19. Quick Reference Cheatsheet

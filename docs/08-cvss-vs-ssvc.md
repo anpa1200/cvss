@@ -3,7 +3,7 @@ title: "CVSS vs SSVC: When to Use Which"
 sidebar_position: 8
 ---
 
-![](/img/cvss/1_k_QWh3vzpMP0Ezy-dXLQXg.png)
+![CVSS v4.0 — CVSS vs SSVC: When to Use Which](/img/cvss/1_k_QWh3vzpMP0Ezy-dXLQXg.png)
 
 
 ## 13. CVSS vs SSVC: When to Use Which

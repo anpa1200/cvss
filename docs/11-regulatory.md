@@ -3,8 +3,8 @@ title: "CVSS as Evidence for Regulatory Vulnerability Management"
 sidebar_position: 11
 ---
 
-![](/img/cvss/1_Phjw6InMQW2DgUEy8TSPrg.png)
-![](/img/cvss/1_VS6SyXxBQgVBvVK7Tgdqzw.png)
+![CVSS v4.0 — CVSS as Evidence for Regulatory Vulnerability Management](/img/cvss/1_Phjw6InMQW2DgUEy8TSPrg.png)
+![CVSS v4.0 — CVSS as Evidence for Regulatory Vulnerability Management (view 2)](/img/cvss/1_VS6SyXxBQgVBvVK7Tgdqzw.png)
 
 
 ## 15. Using CVSS as Evidence for Regulatory Vulnerability Management

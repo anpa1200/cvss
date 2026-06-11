@@ -3,7 +3,7 @@ title: "The 8 Most Common CVSS Mistakes"
 sidebar_position: 12
 ---
 
-![](/img/cvss/1_MkFQre3jSuIhOxGQVBdsEQ.png)
+![CVSS v4.0 — The 8 Most Common CVSS Mistakes](/img/cvss/1_MkFQre3jSuIhOxGQVBdsEQ.png)
 
 
 ## 17. The 8 Most Common CVSS Mistakes

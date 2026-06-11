@@ -3,7 +3,7 @@ title: "CVSS v4.0 Enrichment Tool"
 sidebar_position: 10
 ---
 
-![](/img/cvss/1_CkcYfsDiA-sSCgAXK0SMZg.png)
+![CVSS v4.0 — CVSS v4.0 Enrichment Tool](/img/cvss/1_CkcYfsDiA-sSCgAXK0SMZg.png)
 
 
 ## CVSS v4.0 Enrichment and Prioritization Tool

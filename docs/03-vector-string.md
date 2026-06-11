@@ -3,7 +3,7 @@ title: "Anatomy of a CVSS v4.0 Vector String"
 sidebar_position: 3
 ---
 
-![](/img/cvss/1_90fOtR4kz1tjbBgJ5z-2rw.png)
+![CVSS v4.0 — Anatomy of a CVSS v4.0 Vector String](/img/cvss/1_90fOtR4kz1tjbBgJ5z-2rw.png)
 
 
 ## 3. Anatomy of a CVSS v4.0 Vector String
@@ -101,10 +101,10 @@ The FIRST.org calculator at `https://www.first.org/cvss/calculator/4-0` provides
 
 ## 4. The Three Metric Groups Explained
 
-![](/img/cvss/1_DpPm8CoS6x5CsUHC_ADcdQ.png)
-![](/img/cvss/1_ysB7U2l00IjRQCn4bobLrg.png)
-![](/img/cvss/1_9qLA02caf-NTGxC19_5VrA.png)
-![](/img/cvss/1_vw79R12dK72SrGCLz3mZtg.png)
+![CVSS v4.0 — Anatomy of a CVSS v4.0 Vector String — 4. The Three Metric Groups Explained](/img/cvss/1_DpPm8CoS6x5CsUHC_ADcdQ.png)
+![CVSS v4.0 — Anatomy of a CVSS v4.0 Vector String — 4. The Three Metric Groups Explained (view 2)](/img/cvss/1_ysB7U2l00IjRQCn4bobLrg.png)
+![CVSS v4.0 — Anatomy of a CVSS v4.0 Vector String — 4. The Three Metric Groups Explained (view 3)](/img/cvss/1_9qLA02caf-NTGxC19_5VrA.png)
+![CVSS v4.0 — Anatomy of a CVSS v4.0 Vector String — 4. The Three Metric Groups Explained (view 4)](/img/cvss/1_vw79R12dK72SrGCLz3mZtg.png)
 
 
 ### Group 1: Base Metrics (Set by Vendor)
