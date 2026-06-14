@@ -5,7 +5,7 @@ const { themes: prismThemes } = require('prism-react-renderer');
 const config = {
   title: 'CVSS v4.0 Field Guide',
   tagline: 'The Practical Field Guide for Vulnerability Management',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/logo.png',
 
   url: 'https://1200km.com',
   baseUrl: '/cvss/',
